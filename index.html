@@ -30,6 +30,28 @@ button{
 }
 button:hover{background:white;color:var(--red)}
 button:active{transform:translate(3px,3px) skew(-5deg);box-shadow:1px 1px 0 var(--red)}
+.reference-scene{display:none!important}
+.fighter-selection-banner{display:block;width:100%;height:170px;margin:0 0 14px;object-fit:cover;object-position:center 45%;border:3px solid #fff1bd;box-shadow:5px 5px 0 #e52b4b;background:#090b18}
+.reference-scene:before,.reference-scene:after{content:"";position:absolute;inset:0;pointer-events:none}
+.reference-scene:before{background:radial-gradient(circle at 50% 75%,rgba(255,255,255,.55),transparent 42%),linear-gradient(135deg,transparent 0 38%,rgba(255,255,255,.18) 40%,transparent 42%,transparent 58%,rgba(255,255,255,.18) 60%,transparent 62%);mix-blend-mode:screen;opacity:.85}
+.reference-scene:after{background:linear-gradient(180deg,rgba(4,10,28,.08),rgba(4,10,28,.35));}
+.reference-photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;z-index:1}
+.reference-characters{position:absolute;inset:0;width:100%;height:100%;display:none}
+.reference-logo{display:none!important}
+.reference-characters .swirl path{fill:none;stroke:rgba(255,255,255,.35);stroke-width:8;stroke-linecap:round;filter:drop-shadow(0 0 8px rgba(255,255,255,.2))}
+.reference-characters .swirl path:nth-child(odd){stroke:rgba(17,110,255,.28);stroke-width:7}
+.reference-characters .swirl path:nth-child(3n){stroke:rgba(77,220,255,.24)}
+.reference-characters .swirl path:nth-child(4n){stroke:rgba(255,145,0,.2)}
+.reference-characters .fighter .head{fill:var(--skin)}
+.reference-characters .fighter .hair{fill:var(--hair)}
+.reference-characters .fighter .torso{fill:var(--shirt)}
+.reference-characters .fighter .pants{fill:var(--pants)}
+.reference-characters .fighter .arm{fill:var(--arm)}
+.reference-characters .fighter .shoe{fill:var(--shoe)}
+.reference-characters .fighter .accent{fill:var(--accent)}
+.reference-characters .fighter .face{fill:rgba(0,0,0,.32)}
+.reference-logo{position:absolute;left:50%;top:16px;transform:translateX(-50%);display:block;line-height:.82;font-size:clamp(36px,6vw,86px);font-style:italic;font-weight:900;letter-spacing:1px;color:#f6d549;text-shadow:-4px 4px #e0323f,-10px 10px rgba(0,0,0,.9);text-transform:uppercase;z-index:3}
+.reference-logo span{display:block;text-indent:10px}
 .connection-actions button{min-height:58px}.connection-status{max-width:430px;margin:20px auto 0;color:#fff;font-family:Arial,sans-serif;font-size:13px;line-height:1.5}.beta-badge{display:inline-block;margin-left:8px;padding:4px 8px;color:#050612;background:#ffd329;border:2px solid #fff;font-family:monospace;font-size:11px;letter-spacing:2px;vertical-align:middle;box-shadow:3px 3px #e52b4b}.connection-actions button{min-height:58px}.connection-status{max-width:430px;margin:20px auto 0;color:#fff;font-family:Arial,sans-serif;font-size:13px;line-height:1.5}.round-wins{display:flex;gap:5px;margin-top:7px}.round-wins i{width:14px;height:14px;border-radius:50%;border:2px solid #3b3b48;background:#20212b;box-shadow:0 0 0 1px #111}.round-wins i.won{background:#55e85a;border-color:#dffff2;box-shadow:0 0 8px #55e85a}.right-wins{justify-content:flex-end}.match-popup{position:fixed;inset:0;z-index:30;display:grid;place-items:center;background:rgba(3,4,14,.82)}.match-popup-card{width:min(430px,90vw);text-align:center;padding:28px;border:5px solid #fff1bd;background:#11142e;box-shadow:0 0 0 5px #e52b4b,12px 12px #05050d}.match-popup-card h2{margin:0 0 8px;color:#ffd329;font-size:38px;font-style:italic;text-shadow:-3px 3px #e52b4b}.match-popup-actions{display:flex;justify-content:center;gap:12px;margin-top:20px}
 .frame{position:relative;border:5px solid #e9e2bc;background:#090a18;box-shadow:0 0 0 3px var(--red),10px 12px 0 rgba(0,0,0,.55)}
 .frame:before,.frame:after{content:"";position:absolute;width:22px;height:22px;top:-5px;background:var(--yellow);z-index:3}
@@ -60,16 +82,22 @@ kbd{background:#303963;border:1px solid white;padding:3px}
 .arcade-menu{position:fixed;inset:0;z-index:20;display:flex;align-items:center;justify-content:center;padding:20px;background:radial-gradient(circle,#2e1a61 0 18%,#11142e 58%,#050612 100%)}
 .arcade-menu:before{content:"";position:absolute;inset:0;background:linear-gradient(105deg,transparent 40%,rgba(255,211,41,.08) 41%,transparent 42%),repeating-linear-gradient(0deg,rgba(255,255,255,.025) 0 2px,transparent 2px 5px)}
 .menu-card{position:relative;width:min(620px,92vw);text-align:center;border:6px solid #fff1bd;background:linear-gradient(145deg,rgba(8,10,27,.97),rgba(31,28,74,.97));box-shadow:0 0 0 5px #e52b4b,18px 20px 0 rgba(0,0,0,.7);padding:32px;clip-path:polygon(3% 0,97% 0,100% 12%,100% 88%,97% 100%,3% 100%,0 88%,0 12%)}
-.menu-logo{font-size:clamp(42px,9vw,78px);line-height:.82;margin:0 0 12px;color:#ffd329;font-style:italic;letter-spacing:2px;text-shadow:-4px 4px #e52b4b,-9px 9px #05050d;transform:skew(-7deg)}
+@keyframes logoEntrance{0%{opacity:0;transform:translateY(-35px) scale(1.18) skew(-7deg);filter:blur(8px)}55%{opacity:1;transform:translateY(7px) scale(.96) skew(-7deg);filter:blur(0)}75%{transform:translateY(-3px) scale(1.03) skew(-7deg)}100%{transform:translateY(0) scale(1) skew(-7deg)}}
+@keyframes logoBattle{0%,86%,100%{filter:none;text-shadow:-4px 4px #e52b4b,-9px 9px #05050d}88%{filter:brightness(1.5);text-shadow:-7px 4px #1ee5ff,7px -3px #e52b4b,-10px 10px #05050d}91%{transform:skew(-7deg) translateX(-4px)}94%{transform:skew(-7deg) translateX(4px)}}
+@keyframes menuReveal{from{opacity:0;transform:translateY(30px) scale(.92)}to{opacity:1;transform:translateY(0) scale(1)}}
+.menu-card{animation:menuReveal .55s cubic-bezier(.2,.8,.2,1) both}.menu-logo{font-size:clamp(42px,9vw,78px);line-height:.82;margin:0 0 12px;color:#ffd329;font-style:italic;letter-spacing:2px;text-shadow:-4px 4px #e52b4b,-9px 9px #05050d;animation:logoEntrance .8s ease-out both,logoBattle 4s 1s infinite}.menu-actions button{animation:menuReveal .45s ease-out both}.menu-actions button:nth-child(2){animation-delay:.08s}.menu-actions button:nth-child(3){animation-delay:.16s}.menu-actions button:nth-child(4){animation-delay:.24s}
 .menu-sub{color:#75dfff;letter-spacing:6px;font-family:monospace;font-size:12px;margin-bottom:28px}
 .menu-actions{display:grid;width:min(330px,100%);gap:13px;margin:auto}.menu-actions button{font-size:18px;padding:13px}
+.developer-credit{position:fixed;left:0;right:0;bottom:6px;text-align:center;color:rgba(255,255,255,.58);font-family:Arial,sans-serif;font-size:11px;letter-spacing:1px;pointer-events:none;text-shadow:1px 1px 2px #000;z-index:21}.developer-credit span{font-size:inherit;color:inherit}
 .hidden{display:none!important}
+.selection-message{min-height:22px;margin:8px 0;color:#ffcf2f;font-family:Arial,sans-serif;font-size:14px;font-weight:bold;letter-spacing:.5px}
+.selection-message.error{color:#ff728f}
 .select-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin:16px 0;max-height:58vh;overflow-y:auto;padding:5px}.select-card{min-height:176px;min-width:0;border:3px solid #777;background:#11152d;padding:7px;box-shadow:4px 5px #000;color:white;text-shadow:1px 1px #000}.select-card:hover,.select-card.selected{border-color:#ffd329;background:#3a3157;transform:translateY(-3px)}
-.select-avatar{height:82px;display:flex;align-items:center;justify-content:center;border-bottom:2px solid rgba(255,255,255,.18);margin-bottom:7px;background:linear-gradient(145deg,#24385e,#101325);overflow:hidden}.select-avatar canvas,.select-avatar img{width:72px;height:72px;image-rendering:pixelated;object-fit:cover;object-position:center top}.select-card strong{display:block;min-height:34px;font-family:Arial,sans-serif;font-size:13px;font-weight:900;line-height:1.08;color:#fff;letter-spacing:.1px;text-transform:none}.select-card small{display:block;color:#fff4a4;font-family:Arial,sans-serif;font-size:11px;font-weight:bold;line-height:1.25;margin-top:5px}.select-actions{display:flex;justify-content:center;gap:12px}.settings-row{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #666;padding:14px 0;font-family:Arial}.settings-row input{accent-color:#ffd329}.back-top{position:absolute;left:16px;top:16px}
+.select-avatar{height:82px;display:flex;align-items:center;justify-content:center;border-bottom:2px solid rgba(255,255,255,.18);margin-bottom:7px;background:linear-gradient(145deg,#24385e,#101325);overflow:hidden}.select-avatar canvas,.select-avatar img{width:72px;height:72px;image-rendering:pixelated;object-fit:cover;object-position:center top}.select-card strong{display:block;min-height:34px;font-family:Arial,sans-serif;font-size:13px;font-weight:900;line-height:1.08;color:#fff;letter-spacing:.1px;text-transform:none}.select-card small{display:block;color:#fff4a4;font-family:Arial,sans-serif;font-size:11px;font-weight:bold;line-height:1.25;margin-top:5px}.difficulty-row{display:flex;justify-content:center;gap:8px;margin:-2px 0 14px}.difficulty-row button{min-width:78px;padding:8px 10px;font-size:14px;box-shadow:3px 3px 0 var(--red)}.difficulty-row button.selected{background:white;color:#e52b4b}.select-actions{display:flex;justify-content:center;gap:12px}.map-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:18px 0}.map-card{min-width:0;border:3px solid #777;background:#11152d;padding:8px;color:white;box-shadow:4px 5px #000}.map-card.selected{border-color:#ffd329;background:#3a3157}.map-image{height:150px;margin-bottom:10px;background:#090b18;overflow:hidden;border-bottom:3px solid #e52b4b}.map-image img{width:100%;height:100%;object-fit:cover}.map-card strong{display:block;font-family:Arial,sans-serif;font-size:16px;font-weight:900}.settings-row{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #666;padding:14px 0;font-family:Arial}.settings-row input{accent-color:#ffd329}.back-top{position:absolute;left:16px;top:16px}
 #characterSelect .menu-card{overflow:hidden;max-height:94vh}#characterSelect h1,#modeLabel{position:relative;z-index:2}.select-grid::-webkit-scrollbar{width:10px}.select-grid::-webkit-scrollbar-track{background:#090b18}.select-grid::-webkit-scrollbar-thumb{background:#ffd329;border:2px solid #090b18}
-@media(max-width:850px){.select-grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:850px){.select-grid{grid-template-columns:repeat(3,1fr)}.map-grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:650px){
- .select-grid{grid-template-columns:repeat(2,1fr)}.menu-card{padding:24px 16px}.back-top{position:static;margin-bottom:12px}
+ .select-grid{grid-template-columns:repeat(2,1fr)}.map-grid{grid-template-columns:1fr}.map-image{height:120px}.menu-card{padding:24px 16px}.back-top{position:static;margin-bottom:12px}
  body{padding:8px;overflow-x:hidden}.game-screen{min-height:calc(100vh - 16px)}
  header{gap:8px;padding-top:4px}header h1{font-size:27px}header>div{width:100%;text-align:center}header>div:first-child{border-left-width:5px}
  header button{padding:9px 8px;font-size:12px}.frame{border-width:3px;box-shadow:0 0 0 2px var(--red),5px 6px 0 rgba(0,0,0,.55)}
@@ -89,13 +117,15 @@ kbd{background:#303963;border:1px solid white;padding:3px}
 <div id="mainMenu" class="arcade-menu">
  <div class="menu-card">
   <h1 class="menu-logo">PATLING<br>FIGHTERS</h1>
-  <span class="beta-badge">BETA TEST</span>
   <div class="menu-sub">ARCADE EDITION</div>
   <div class="menu-actions">
    <button id="menuNew">NEW GAME</button>
    <button id="menuMulti">MULTIPLAYER</button>
    <button id="menuSettings">SETTINGS</button>
    <button id="menuQuit">QUIT</button>
+  </div>
+  <div class="developer-credit" aria-label="Developed and owned by Jonhsen G. Ocampo">
+   <div class="developer-credit-text"><span>Developed &amp; owned by Jonhsen G. Ocampo</span></div>
   </div>
  </div>
 </div>
@@ -105,20 +135,38 @@ kbd{background:#303963;border:1px solid white;padding:3px}
   <button class="back-top" id="selectBack">BACK</button>
   <h1 style="font-size:38px">CHOOSE YOUR FIGHTER</h1>
   <div id="modeLabel" class="menu-sub">BOT MATCH</div>
+  <div class="difficulty-row" id="difficultyRow" aria-label="Bot difficulty">
+   <button data-difficulty="easy">EASY</button>
+   <button data-difficulty="normal" class="selected">NORMAL</button>
+   <button data-difficulty="hard">HARD</button>
+   <button data-difficulty="extreme">EXTREME</button>
+  </div>
   <div id="selectGrid" class="select-grid"></div>
+  <div id="fighterSelectionMessage" class="selection-message" role="alert" aria-live="polite"></div>
   <div class="select-actions"><button id="confirmCharacter">CONFIRM FIGHTER</button></div>
+ </div>
+</div>
+
+<div id="mapSelect" class="arcade-menu hidden">
+ <div class="menu-card" style="width:min(900px,94vw)">
+  <button class="back-top" id="mapBack">BACK</button>
+  <h1 style="font-size:38px">CHOOSE YOUR MAP</h1>
+  <div class="menu-sub">SELECT THE BATTLEFIELD</div>
+  <div id="mapGrid" class="map-grid"></div>
+  <div id="mapSelectionMessage" class="selection-message" role="alert" aria-live="polite"></div>
+  <div class="select-actions"><button id="confirmMap">START BATTLE</button></div>
  </div>
 </div>
 
 <div id="connectionMenu" class="arcade-menu hidden">
  <div class="menu-card">
   <button class="back-top" id="connectionBack">BACK</button>
-  <h1 style="font-size:38px">MULTIPLAYER CONNECTION <span class="beta-badge">BETA</span></h1>
+  <h1 style="font-size:38px">MULTIPLAYER CONNECTION</h1>
   <div class="menu-sub">CHOOSE HOW TO CONNECT</div>
   <div class="menu-actions connection-actions">
-   <button id="wifiConnect">HOTSPOT / WI-FI</button>
-   <button id="bluetoothConnect">BLUETOOTH</button>
-   <button id="onlineConnect">ONLINE ROOM</button>
+   <button id="wifiConnect">HOST LAN ROOM</button>
+   <button id="bluetoothConnect">GAME CONTROLLER</button>
+   <button id="onlineConnect">JOIN LAN ROOM</button>
   </div>
   <div id="onlineLobby" class="hidden" style="margin-top:16px">
    <button id="createOnlineRoom">CREATE ROOM</button>
@@ -126,8 +174,11 @@ kbd{background:#303963;border:1px solid white;padding:3px}
     <input id="roomCode" maxlength="24" placeholder="ROOM CODE" style="min-width:0;flex:1;padding:11px;font-family:monospace;text-transform:uppercase">
     <button id="joinOnlineRoom">JOIN</button>
    </div>
+   <div style="margin:12px auto 0;max-width:430px">
+    <input id="lanServerAddress" placeholder="Server address (example: 192.168.1.10)" style="width:100%;padding:11px">
+   </div>
   </div>
-  <div id="connectionStatus" class="connection-status">BETA TEST MODE: choose Hotspot/Wi-Fi for local network testing, or Bluetooth for controller testing.</div>
+  <div id="connectionStatus" class="connection-status">Connect both phones to the same Wi-Fi or hotspot, run server.py on the host computer, then create or join a LAN room.</div>
  </div>
 </div>
 
@@ -135,6 +186,7 @@ kbd{background:#303963;border:1px solid white;padding:3px}
  <div class="menu-card">
   <button class="back-top" id="settingsBack">BACK</button>
   <h1 style="font-size:38px">SETTINGS</h1>
+  <label class="settings-row"><span>Background Music</span><input id="musicSetting" type="checkbox" checked></label>
   <label class="settings-row"><span>Sound Effects</span><input id="soundSetting" type="checkbox" checked></label>
   <label class="settings-row"><span>Screen Shake</span><input id="shakeSetting" type="checkbox" checked></label>
   <label class="settings-row"><span>Voice Effects</span><input id="voiceSetting" type="checkbox" checked></label>
@@ -268,20 +320,33 @@ let hugDamageDone=false;
 let hugBreath=0;
 
 const roster=[
- {name:"Gabriela Lising",icon:"★",color:"#f12d91",skin:"#f4b18d",hair:"#32162e",skill:"Full Breath Hug"},
- {name:"Mark Yumul",icon:"●",color:"#28b8ee",skin:"#eeb18c",hair:"#171a2c",skill:"Plush Toy Blast"},
- {name:"Clemenia Ibarra",icon:"♛",color:"#e9d8ff",skin:"#d99b74",hair:"#271a24",skill:"Royal Palm Strike"},
- {name:"Migz",icon:"⚡",color:"#45ef9b",skin:"#c98762",hair:"#15182b",skill:"Volt Rush"},
- {name:"Isaac Helicopter",icon:"▲",color:"#ff9d31",skin:"#d99b74",hair:"#32251d",skill:"Rotor Kick"},
- {name:"Tupey the Dog",icon:"🐶",color:"#c89a62",skin:"#9b6848",hair:"#352117",skill:"Bark Shockwave"},
- {name:"Vergel the Bogsa",icon:"◆",color:"#8d6ce7",skin:"#b97855",hair:"#211b2c",skill:"Bogsa Slam"},
- {name:"Bulig the Snatcher",icon:"✦",color:"#72c743",skin:"#b87955",hair:"#25221d",skill:"Quick Snatch"},
- {name:"Puking Mashua",icon:"☠",color:"#e8e3c8",skin:"#b87858",hair:"#34302d",skill:"Mashed Meteor"},
- {name:"Banlag the Red",icon:"🔥",color:"#e6292e",skin:"#ba7451",hair:"#201316",skill:"Crimson Red Eye"}
+ {name:"Gabriela Lising",icon:"★",color:"#f12d91",skin:"#f4b18d",hair:"#32162e",skill:"Full Breath Hug",image:"assets/gabriela.png"},
+ {name:"Mark Yumul",icon:"●",color:"#28b8ee",skin:"#eeb18c",hair:"#171a2c",skill:"Plush Toy Blast",image:"assets/mark-yumul.png"},
+ {name:"Clemenia Ibarra",icon:"♛",color:"#e9d8ff",skin:"#d99b74",hair:"#271a24",skill:"Royal Palm Strike",image:"assets/clemenia.png"},
+ {name:"Migz",icon:"⚡",color:"#45ef9b",skin:"#c98762",hair:"#15182b",skill:"Volt Rush",image:"assets/migz.png"},
+ {name:"Isaac Helicopter",icon:"▲",color:"#ff9d31",skin:"#d99b74",hair:"#32251d",skill:"Rotor Kick",image:"assets/isaac.png"},
+ {name:"Tupey the Dog",icon:"🐶",color:"#c89a62",skin:"#9b6848",hair:"#352117",skill:"Bark Shockwave",image:"assets/tupey.png"},
+ {name:"Vergel the Bogsa",icon:"◆",color:"#8d6ce7",skin:"#b97855",hair:"#211b2c",skill:"Bogsa Slam",image:"assets/vergel.png"},
+ {name:"Bulig the Snatcher",icon:"✦",color:"#72c743",skin:"#b87955",hair:"#25221d",skill:"Quick Snatch",image:"assets/bulig.png"},
+ {name:"Puking Mashua",icon:"☠",color:"#e8e3c8",skin:"#b87858",hair:"#34302d",skill:"Mashed Meteor",image:"assets/puking.png"},
+ {name:"Banlag the Red",icon:"🔥",color:"#e6292e",skin:"#ba7451",hair:"#201316",skill:"Crimson Red Eye",image:"assets/banlag.png"}
 ];
-let chosenPlayer=0;
+let chosenPlayer=null;
 let chosenEnemy=1;
 let gameMode="bot";
+let selectedStage=null;
+let botDifficulty="normal";
+const botDifficultySettings={
+ easy:{react:15,defense:.18,attack:.18,ultimate:.18,jump:.08,movement:.65},
+ normal:{react:10,defense:.35,attack:.28,ultimate:.48,jump:.12,movement:.78},
+ hard:{react:6,defense:.58,attack:.42,ultimate:.72,jump:.18,movement:.92},
+ extreme:{react:3,defense:.82,attack:.62,ultimate:.92,jump:.28,movement:1}
+};
+const stages=[
+ {name:"Bueno Bridge",image:"assets/bueno.png"},
+ {name:"Pineda Resort",image:"assets/pineda.jpg"},
+ {name:"Municipality of Capas",image:"assets/battle-field.png"}
+];
 
 const A={
  x:95,y:F,hp:100,face:1,
@@ -311,6 +376,39 @@ markImage.onload=()=>{
  markPixelCtx.drawImage(markImage,190,30,390,500,0,0,16,14);
 };
 let audioContext=null;
+let musicTimer=null;
+let musicStep=0;
+window.arcadeMusicEnabled=true;
+
+function playMusicNote(frequency,duration=.16){
+ if(!audioContext||window.arcadeMusicEnabled===false)return;
+ let oscillator=audioContext.createOscillator();
+ let gain=audioContext.createGain();
+ oscillator.type="square";
+ oscillator.frequency.value=frequency;
+ gain.gain.setValueAtTime(.018,audioContext.currentTime);
+ gain.gain.exponentialRampToValueAtTime(.001,audioContext.currentTime+duration);
+ oscillator.connect(gain).connect(audioContext.destination);
+ oscillator.start();oscillator.stop(audioContext.currentTime+duration+.02);
+}
+
+function startBackgroundMusic(){
+ if(window.arcadeMusicEnabled===false||musicTimer)return;
+ audioContext=audioContext||(window.AudioContext||window.webkitAudioContext?new (window.AudioContext||window.webkitAudioContext):null);
+ if(!audioContext)return;
+ if(audioContext.state=== "suspended")audioContext.resume();
+ let melody=[196,246.94,293.66,246.94,220,261.63,329.63,261.63,174.61,220,261.63,220,196,246.94,293.66,369.99];
+ playMusicNote(melody[musicStep%melody.length]);
+ musicTimer=setInterval(()=>{
+  playMusicNote(melody[musicStep%melody.length]);
+  if(musicStep%4===0)playMusicNote(melody[(musicStep+7)%melody.length]/2,.22);
+  musicStep++;
+ },280);
+}
+
+function stopBackgroundMusic(){
+ if(musicTimer){clearInterval(musicTimer);musicTimer=null}
+}
 
 function arcadeNoise(duration=.12,volume=.12){
  let ctx=audioContext;let buffer=ctx.createBuffer(1,Math.ceil(ctx.sampleRate*duration),ctx.sampleRate);
@@ -675,10 +773,10 @@ function draw(){
  ctx.font="bold 8px monospace";
  ctx.fillStyle="white";
  ctx.textAlign="left";
- ctx.fillText((typeof roster!=="undefined"?roster[chosenPlayer].name:"PLAYER 1").toUpperCase().slice(0,18),8,25);
+ ctx.fillText((typeof roster!=="undefined"&&chosenPlayer!==null?roster[chosenPlayer].name:"PLAYER 1").toUpperCase().slice(0,18),8,25);
 
  ctx.textAlign="right";
- ctx.fillText((typeof roster!=="undefined"?roster[chosenEnemy].name:"OPPONENT").toUpperCase().slice(0,18),472,25);
+ ctx.fillText((typeof roster!=="undefined"&&chosenEnemy!==null?roster[chosenEnemy].name:"OPPONENT").toUpperCase().slice(0,18),472,25);
 
  ctx.textAlign="center";
  ctx.fillStyle="#ffcf4a";
@@ -811,8 +909,8 @@ function finish(){
  koResult=A.hp===B.hp
   ?"DRAW!"
   :A.hp>B.hp
-  ?roster[chosenPlayer].name.toUpperCase()+" WINS!"
-  :roster[chosenEnemy].name.toUpperCase()+" WINS!";
+  ?((chosenPlayer!==null?roster[chosenPlayer].name:"PLAYER 1").toUpperCase()+" WINS!")
+  :((chosenEnemy!==null?roster[chosenEnemy].name:"OPPONENT").toUpperCase()+" WINS!");
  koWinner=A.hp===B.hp?null:(A.hp>B.hp?A:B);
  if(koWinner===A)roundWins[0]++;
  if(koWinner===B)roundWins[1]++;
@@ -1129,7 +1227,7 @@ function keydown(e){
 
  if(["arrowleft","arrowright","arrowup"," "].includes(k)){
   e.preventDefault();
-  if(gameMode.includes("online-guest"))sendOnlineAction(k=== "arrowleft"?"left":k=== "arrowright"?"right":"jump");
+  if(gameMode.includes("online-guest")||gameMode.includes("lan-guest"))sendOnlineAction(k=== "arrowleft"?"left":k=== "arrowright"?"right":"jump");
  }
 
  if(!keys[k]){
@@ -1141,9 +1239,9 @@ function keydown(e){
   if(k==="v")attack(A,B,"ultimate");
   if(k==="b")attack(A,B,"toss");
 
-  if(k=== "j")gameMode.includes("online-guest")?sendOnlineAction("punch"):attack(B,A,"punch");
-  if(k=== "k")gameMode.includes("online-guest")?sendOnlineAction("toss"):attack(B,A,"toss");
-  if(k=== "l")gameMode.includes("online-guest")?sendOnlineAction("ultimate"):attack(B,A,"ultimate");
+  if(k=== "j")gameMode.includes("online-guest")||gameMode.includes("lan-guest")?sendOnlineAction("punch"):attack(B,A,"punch");
+  if(k=== "k")gameMode.includes("online-guest")||gameMode.includes("lan-guest")?sendOnlineAction("toss"):attack(B,A,"toss");
+  if(k=== "l")gameMode.includes("online-guest")||gameMode.includes("lan-guest")?sendOnlineAction("ultimate"):attack(B,A,"ultimate");
  }
 }
 
@@ -1151,7 +1249,7 @@ window.addEventListener("keydown",keydown);
 
 window.addEventListener("keyup",e=>{
  let k=e.key.toLowerCase();keys[k]=false;
- if(gameMode.includes("online-guest")){
+ if(gameMode.includes("online-guest")||gameMode.includes("lan-guest")){
   if(k=== "arrowleft")sendOnlineAction("left-stop");
   if(k=== "arrowright")sendOnlineAction("right-stop");
   if(k=== "arrowup")sendOnlineAction("jump-stop");
@@ -1198,10 +1296,11 @@ document.querySelectorAll("[data-key]").forEach(b=>{
 });
 
 function showScreen(id){
- ["mainMenu","characterSelect","connectionMenu","settingsMenu"].forEach(x=>$(x).classList.toggle("hidden",x!==id));
+ ["mainMenu","characterSelect","mapSelect","connectionMenu","settingsMenu"].forEach(x=>$(x).classList.toggle("hidden",x!==id));
 }
 
 function applyRosterCharacter(){
+ if(chosenPlayer===null)return;
  let player=roster[chosenPlayer], enemy=roster[chosenEnemy];
  Object.assign(A,{color:player.color,skin:player.skin,hair:player.hair,kind:chosenPlayer===1?2:1});
  Object.assign(B,{color:enemy.color,skin:enemy.skin,hair:enemy.hair,kind:chosenEnemy===1?2:1});
@@ -1239,24 +1338,55 @@ function buildCharacterSelect(){
  let grid=$("selectGrid");grid.innerHTML="";
  roster.forEach((fighter,i)=>{
   let card=document.createElement("button");card.className="select-card"+(i===chosenPlayer?" selected":"");
-  let portrait=i===1?'<img src="assets/mark-yumul.png" alt="Mark Yumul pixel portrait">':'<canvas aria-label="'+fighter.name+' pixel portrait"></canvas>';
+  let portrait=fighter.image?'<img src="'+fighter.image+'" alt="'+fighter.name+' portrait">':'<canvas aria-label="'+fighter.name+' pixel portrait"></canvas>';
   card.innerHTML=`<div class="select-avatar">${portrait}</div><strong>${fighter.name}</strong><small>${fighter.skill}</small>`;
   let canvas=card.querySelector("canvas");if(canvas)drawCharacterPortrait(canvas,fighter,i);
-  card.onclick=()=>{chosenPlayer=i;grid.querySelectorAll(".select-card").forEach(c=>c.classList.toggle("selected",c===card));};
+  card.onclick=()=>{chosenPlayer=i;$("fighterSelectionMessage").textContent="";$("fighterSelectionMessage").classList.remove("error");grid.querySelectorAll(".select-card").forEach(c=>c.classList.toggle("selected",c===card));};
   grid.appendChild(card);
  });
- $("modeLabel").textContent=pendingMode=== "bot"?"BOT MATCH — CHOOSE PLAYER":"LOCAL MULTIPLAYER — CHOOSE PLAYER 1";
+ $("modeLabel").textContent=pendingMode=== "bot"?"BOT MATCH — "+botDifficulty.toUpperCase()+" — CHOOSE PLAYER":"LOCAL MULTIPLAYER — CHOOSE PLAYER 1";
+ $("difficultyRow").classList.toggle("hidden",pendingMode!=="bot");
 }
-function openCharacterSelect(mode){pendingMode=mode;gameMode=mode;showScreen("characterSelect");buildCharacterSelect();}
+function openCharacterSelect(mode){pendingMode=mode;gameMode=mode;chosenPlayer=null;selectedStage=null;$("fighterSelectionMessage").textContent="";$("fighterSelectionMessage").classList.remove("error");showScreen("characterSelect");buildCharacterSelect();}
 
+function buildMapSelect(){
+ let grid=$("mapGrid");grid.innerHTML="";
+ stages.forEach((stage,index)=>{
+  let card=document.createElement("button");
+  card.className="map-card"+(index===selectedStage?" selected":"");
+  card.innerHTML='<div class="map-image"><img src="'+stage.image+'" alt="'+stage.name+'"></div><strong>'+stage.name+'</strong>';
+  card.querySelector("img").onerror=()=>{card.querySelector("img").src="assets/battle-field.png"};
+  card.onclick=()=>{selectedStage=index;$("mapSelectionMessage").textContent="";$("mapSelectionMessage").classList.remove("error");grid.querySelectorAll(".map-card").forEach(c=>c.classList.toggle("selected",c===card));};
+  grid.appendChild(card);
+ });
+}
+
+document.querySelectorAll("[data-difficulty]").forEach(button=>{
+ button.onclick=()=>{
+  botDifficulty=button.dataset.difficulty;
+  document.querySelectorAll("[data-difficulty]").forEach(item=>item.classList.toggle("selected",item===button));
+  $("modeLabel").textContent="BOT MATCH — "+botDifficulty.toUpperCase()+" — CHOOSE PLAYER";
+ };
+});
 $("menuNew").onclick=()=>openCharacterSelect("bot");
 $("menuMulti").onclick=()=>{showScreen("connectionMenu");$("connectionStatus").textContent="Use one device for both players, or connect Bluetooth controllers."};
 $("menuSettings").onclick=()=>showScreen("settingsMenu");
 $("menuQuit").onclick=()=>{if(confirm("Quit Patling Fighters?")){document.body.innerHTML='<div style="display:grid;place-items:center;height:100vh;background:#050612;color:#ffd329;font-family:Impact;font-size:44px;text-align:center">GAME CLOSED</div>'}};
 $("selectBack").onclick=()=>gameMode=== "multiplayer"?showScreen("connectionMenu"):showScreen("mainMenu");
+$("mapBack").onclick=()=>showScreen("characterSelect");
 $("connectionBack").onclick=()=>showScreen("mainMenu");
-$("wifiConnect").onclick=()=>openCharacterSelect("multiplayer-wifi");
-$("onlineConnect").onclick=()=>{$("onlineLobby").classList.remove("hidden");$("connectionStatus").textContent="Create a room, then send its code to your friend."};
+$("wifiConnect").onclick=()=>{
+ $("onlineLobby").classList.remove("hidden");
+ $("createOnlineRoom").classList.remove("hidden");
+ $("joinOnlineRoom").classList.add("hidden");
+ $("connectionStatus").textContent="Run server.py on the host PC. Enter its LAN IP and create a room code.";
+};
+$("onlineConnect").onclick=()=>{
+ $("onlineLobby").classList.remove("hidden");
+ $("createOnlineRoom").classList.add("hidden");
+ $("joinOnlineRoom").classList.remove("hidden");
+ $("connectionStatus").textContent="Enter the host PC address and the room code from the host player.";
+};
 $("bluetoothConnect").onclick=()=>{
  $("connectionStatus").textContent="Bluetooth controllers use the standard gamepad buttons. Connect the controller in your phone settings, then continue.";
  openCharacterSelect("multiplayer-bluetooth");
@@ -1265,8 +1395,29 @@ $("settingsBack").onclick=()=>showScreen("mainMenu");
 $("settingsDone").onclick=()=>showScreen("mainMenu");
 $("mainMenuButton").onclick=()=>{reset();$("gameScreen").classList.add("hidden");showScreen("mainMenu")};
 $("confirmCharacter").onclick=()=>{
+ if(chosenPlayer===null){
+  $("fighterSelectionMessage").textContent="Please choose a fighter before continuing.";
+  $("fighterSelectionMessage").classList.add("error");
+  return;
+ }
  chosenEnemy=gameMode=== "bot"?(chosenPlayer+1)%roster.length: (chosenPlayer===1?0:1);
- applyRosterCharacter();roundNumber=1;roundWins=[0,0];matchResolved=false;updateRoundWins();showScreen(null);$("gameScreen").classList.remove("hidden");
+ if(gameMode.includes("lan-"))sendLanMessage({fighter:{player:chosenPlayer,enemy:chosenEnemy}});
+ applyRosterCharacter();
+ selectedStage=null;
+ $("mapSelectionMessage").textContent="";
+ $("mapSelectionMessage").classList.remove("error");
+ buildMapSelect();
+ showScreen("mapSelect");
+};
+$("confirmMap").onclick=()=>{
+ if(selectedStage===null){
+  $("mapSelectionMessage").textContent="Please choose a map before starting the battle.";
+  $("mapSelectionMessage").classList.add("error");
+  return;
+ }
+ battleFieldImage.src=stages[selectedStage].image;
+ battleFieldImage.onerror=()=>{battleFieldImage.onerror=null;battleFieldImage.src="assets/battle-field.png"};
+ roundNumber=1;roundWins=[0,0];matchResolved=false;updateRoundWins();showScreen(null);$("gameScreen").classList.remove("hidden");
  startRoundCountdown(1);
 };
 
@@ -1288,33 +1439,53 @@ $("newMatch").onclick=()=>{
 $("restartMatch").onclick=()=>resetMatch();
 
 let onlinePeer=null, onlineConnection=null;
-function setupOnlineConnection(){
- if(typeof Peer=== "undefined"){
-  $("connectionStatus").textContent="Online multiplayer library could not load. Check your internet connection.";return null;
- }
- return new Peer(undefined,{debug:0});
+let lanSocket=null, lanRole=null, lanRoomCode="";
+function lanWebSocketUrl(address){
+ address=(address||location.hostname||"localhost").trim().replace(/^https?:\/\//i,"").replace(/\/.*$/,"");
+ if(address.startsWith("ws://")||address.startsWith("wss://"))return address;
+ return "ws://"+address+":8765/game";
 }
-$("createOnlineRoom").onclick=()=>{
- onlinePeer=setupOnlineConnection();if(!onlinePeer)return;
- onlinePeer.on("open",roomId=>{
-  $("roomCode").value=roomId;
-  $("connectionStatus").textContent="Room ready: "+roomId+" — share this code.";
- });
- onlinePeer.on("connection",connection=>{
-  onlineConnection=connection;bindOnlineConnection();$("connectionStatus").textContent="Player connected! Starting character selection...";
-  setTimeout(()=>openCharacterSelect("multiplayer-online-host"),400);
- });
- onlinePeer.on("error",e=>$("connectionStatus").textContent="Online connection error: "+e.type);
-};
-$("joinOnlineRoom").onclick=()=>{
- let roomCode=$("roomCode").value.trim();if(!roomCode)return;
- onlinePeer=setupOnlineConnection();if(!onlinePeer)return;
- onlinePeer.on("open",()=>{
-  onlineConnection=onlinePeer.connect(roomCode,{reliable:true});bindOnlineConnection();
-  $("connectionStatus").textContent="Connecting to room...";
-  setTimeout(()=>openCharacterSelect("multiplayer-online-guest"),600);
- });
-};
+function connectLanRoom(role){
+ let room=$("roomCode").value.trim().toUpperCase();
+ let address=$("lanServerAddress").value.trim()||location.hostname;
+ if(!room){
+  room=Math.floor(1000+Math.random()*9000).toString();
+  $("roomCode").value=room;
+ }
+ lanRoomCode=room;
+ lanSocket=new WebSocket(lanWebSocketUrl(address));
+ lanRole=role;
+ $("connectionStatus").textContent="Connecting to LAN server...";
+ lanSocket.onopen=()=>{
+  lanSocket.send(JSON.stringify({type:"join",room}));
+ };
+ lanSocket.onmessage=event=>handleLanMessage(JSON.parse(event.data));
+ lanSocket.onerror=()=>{$("connectionStatus").textContent="Cannot reach server.py. Check the host IP and that both devices share the same Wi-Fi."};
+ lanSocket.onclose=()=>{if(gameMode.includes("lan"))$("connectionStatus").textContent="LAN connection closed."};
+}
+function handleLanMessage(data){
+ if(data.type=== "joined"){
+  lanRole=data.role;
+  gameMode=data.role=== "host"?"multiplayer-lan-host":"multiplayer-lan-guest";
+  $("connectionStatus").textContent="Connected as "+lanRole.toUpperCase()+". Room "+lanRoomCode;
+ }
+ if(data.type=== "peer-connected"){
+  $("connectionStatus").textContent="Player connected. Opening fighter selection...";
+  setTimeout(()=>openCharacterSelect(gameMode),300);
+ }
+ if(data.type=== "error"){$("connectionStatus").textContent=data.message;return}
+ if(data.action&&lanRole=== "host"){runPlayerAction(B,A,data.action)}
+ if(data.action&&lanRole=== "guest"){runPlayerAction(A,B,data.action)}
+ if(data.state&&lanRole=== "guest"){
+  Object.assign(A,data.state.A||{});Object.assign(B,data.state.B||{});
+  if(data.state.time!==undefined)$("timer").textContent=data.state.time;
+ }
+ if(data.fighter&&lanRole=== "guest"&&data.fighter.player!==undefined){chosenEnemy=data.fighter.player;applyRosterCharacter()}
+ if(data.fighter&&lanRole=== "host"&&data.fighter.player!==undefined){chosenEnemy=data.fighter.player;applyRosterCharacter()}
+}
+function sendLanMessage(data){if(lanSocket&&lanSocket.readyState===WebSocket.OPEN)lanSocket.send(JSON.stringify(data))}
+$("createOnlineRoom").onclick=()=>{connectLanRoom("host")};
+$("joinOnlineRoom").onclick=()=>{connectLanRoom("guest")};
 function bindOnlineConnection(){
  if(!onlineConnection)return;
  onlineConnection.on("open",()=>$("connectionStatus").textContent="Online player connected! Choose your fighter.");
@@ -1327,7 +1498,10 @@ function bindOnlineConnection(){
   }
  });
 }
-function sendOnlineAction(action){if(onlineConnection&&onlineConnection.open)onlineConnection.send({player:gameMode.includes("guest")?1:2,action});}
+function sendOnlineAction(action){
+ if(lanSocket&&lanSocket.readyState===WebSocket.OPEN){sendLanMessage({action});return}
+ if(onlineConnection&&onlineConnection.open)onlineConnection.send({player:gameMode.includes("guest")?1:2,action});
+}
 function runPlayerAction(att,def,action){
  if(action=== "left")keys.arrowleft=true;
  else if(action=== "right")keys.arrowright=true;
@@ -1359,6 +1533,7 @@ let botComboStep=0;
 function botThink(){
  if(gameMode!== "bot"||!active)return;
  if(B.stun>0||B.cool>0)return;
+ let difficulty=botDifficultySettings[botDifficulty];
 
  let distance=B.x-A.x;
  let gap=Math.abs(distance);
@@ -1368,42 +1543,48 @@ function botThink(){
 
  // React to the player instead of using the same random movement every frame.
  if(botDecision<=0){
-  botDecision=6+Math.floor(Math.random()*10);
+  botDecision=Math.max(2,difficulty.react+Math.floor(Math.random()*difficulty.react));
   botComboStep=Math.random()<.72?1:0;
  }
  botDecision--;
 
- if(A.attack>0&&gap<105&&Math.random()<.35){
+ if(A.attack>0&&gap<105&&Math.random()<difficulty.defense){
   keys[moveAway]=true;
-  if(B.ground&&Math.random()<.18)keys.arrowup=true;
+  if(B.ground&&Math.random()<difficulty.jump)keys.arrowup=true;
  } else if(gap>58){
   keys[moveToward]=true;
-  if(gap>150&&Math.random()<.25)keys.arrowup=true;
- } else if(gap<42&&Math.random()<.24){
+  if(gap>150&&Math.random()<difficulty.jump)keys.arrowup=true;
+ } else if(gap<42&&Math.random()<difficulty.movement*.24){
   keys[moveAway]=true;
- } else if(B.ground&&gap<150&&Math.random()<.04){
+ } else if(B.ground&&gap<150&&Math.random()<difficulty.jump*.35){
   keys.arrowup=true;
  }
 
- if(gap>150&&B.cool===0&&Math.random()<.35)attack(B,A,"toss");
- else if(B.super>=100&&gap<115&&Math.random()<.48)attack(B,A,"ultimate");
+ if(gap>150&&B.cool===0&&Math.random()<difficulty.attack)attack(B,A,"toss");
+ else if(B.super>=100&&gap<115&&Math.random()<difficulty.ultimate)attack(B,A,"ultimate");
  else if(gap<48){
-  if(botComboStep===1&&Math.random()<.58){
+  if(botComboStep===1&&Math.random()<difficulty.attack){
    attack(B,A,"punch");
    botComboStep=0;
-  } else if(Math.random()<.12){
+  } else if(Math.random()<difficulty.attack*.5){
    attack(B,A,"breath");
-  } else if(Math.random()<.16){
+  } else if(Math.random()<difficulty.attack*.6){
    attack(B,A,"sleep");
-  } else if(Math.random()<.32){
+  } else if(Math.random()<difficulty.attack){
    attack(B,A,"toss");
   }
- } else if(gap<105&&Math.random()<.28){
+ } else if(gap<105&&Math.random()<difficulty.attack*.68){
   attack(B,A,Math.random()<.72?"punch":"sleep");
  }
 }
 
-// Settings affect sound and shake.
+// Settings affect music, sound and shake.
+document.addEventListener("pointerdown",()=>startBackgroundMusic(),{once:true});
+document.addEventListener("keydown",()=>startBackgroundMusic(),{once:true});
+$("musicSetting").onchange=e=>{
+ window.arcadeMusicEnabled=e.target.checked;
+ if(e.target.checked)startBackgroundMusic();else stopBackgroundMusic();
+};
 $("soundSetting").onchange=e=>{window.arcadeSoundEnabled=e.target.checked};
 $("voiceSetting").onchange=e=>{window.arcadeVoiceEnabled=e.target.checked};
 $("shakeSetting").onchange=e=>{window.arcadeShakeEnabled=e.target.checked};
@@ -1414,6 +1595,9 @@ let onlineStateTick=0;
 loop=function(now){
  if(++botTick%5===0)botThink();
  updateBluetoothGamepad();
+ if(gameMode.includes("lan-host")&&lanSocket&&lanSocket.readyState===WebSocket.OPEN&&++onlineStateTick%3===0){
+  sendLanMessage({state:{A:{x:A.x,y:A.y,hp:A.hp,face:A.face,attack:A.attack},B:{x:B.x,y:B.y,hp:B.hp,face:B.face,attack:B.attack},time}});
+ }
  if(onlineConnection&&onlineConnection.open&&gameMode.includes("online-host")&&++onlineStateTick%3===0){
   onlineConnection.send({state:{A:{x:A.x,y:A.y,hp:A.hp,face:A.face,attack:A.attack},B:{x:B.x,y:B.y,hp:B.hp,face:B.face,attack:B.attack},time}});
  }
