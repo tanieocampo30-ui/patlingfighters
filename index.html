@@ -108,6 +108,14 @@ kbd{background:#303963;border:1px solid white;padding:3px}
  .mobile{display:grid!important;grid-template-columns:repeat(4,1fr);gap:5px}.mobile button{min-height:42px;font-size:11px;padding:5px 2px}
  .arcade-menu{padding:10px}.menu-card{max-height:96vh;overflow-y:auto;width:96vw!important;padding:18px 12px}.menu-actions{width:260px}.menu-actions button{font-size:16px}.menu-logo{font-size:42px}
  #characterSelect h1{font-size:28px!important}.select-grid{max-height:55vh;margin:10px 0}.select-card{min-height:158px}.select-avatar{height:68px}.select-avatar canvas,.select-avatar img{width:58px;height:58px}
+ #characterSelect .menu-card{height:calc(100dvh - 20px);max-height:none;overflow:hidden}
+ #characterSelect .menu-sub{margin-bottom:12px}
+ #characterSelect .difficulty-row{flex-wrap:wrap;margin-bottom:10px}
+ #characterSelect .difficulty-row button{min-width:68px;min-height:38px;padding:6px 8px}
+ #characterSelect .select-grid{height:0;max-height:none;flex:1 1 0;overscroll-behavior:contain;-webkit-overflow-scrolling:touch}
+ .select-card{touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+ #characterSelect .select-actions{padding-top:4px}
+ #confirmCharacter{min-height:48px}
 }
 @media(max-width:380px){.mobile{grid-template-columns:repeat(3,minmax(0,1fr))}.mobile button{font-size:11px}.name{font-size:9px}.hud{grid-template-columns:minmax(0,1fr) 42px minmax(0,1fr)}}
 </style>
@@ -1337,7 +1345,7 @@ function drawCharacterPortrait(canvas,fighter,index){
 function buildCharacterSelect(){
  let grid=$("selectGrid");grid.innerHTML="";
  roster.forEach((fighter,i)=>{
-  let card=document.createElement("button");card.className="select-card"+(i===chosenPlayer?" selected":"");
+  let card=document.createElement("button");card.type="button";card.className="select-card"+(i===chosenPlayer?" selected":"");
   let portrait=fighter.image?'<img src="'+fighter.image+'" alt="'+fighter.name+' portrait">':'<canvas aria-label="'+fighter.name+' pixel portrait"></canvas>';
   card.innerHTML=`<div class="select-avatar">${portrait}</div><strong>${fighter.name}</strong><small>${fighter.skill}</small>`;
   let canvas=card.querySelector("canvas");if(canvas)drawCharacterPortrait(canvas,fighter,i);
