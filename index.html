@@ -88,7 +88,6 @@ kbd{background:#303963;border:1px solid white;padding:3px}
 .menu-card{animation:menuReveal .55s cubic-bezier(.2,.8,.2,1) both}.menu-logo{font-size:clamp(42px,9vw,78px);line-height:.82;margin:0 0 12px;color:#ffd329;font-style:italic;letter-spacing:2px;text-shadow:-4px 4px #e52b4b,-9px 9px #05050d;animation:logoEntrance .8s ease-out both,logoBattle 4s 1s infinite}.menu-actions button{animation:menuReveal .45s ease-out both}.menu-actions button:nth-child(2){animation-delay:.08s}.menu-actions button:nth-child(3){animation-delay:.16s}.menu-actions button:nth-child(4){animation-delay:.24s}
 .menu-sub{color:#75dfff;letter-spacing:6px;font-family:monospace;font-size:12px;margin-bottom:28px}
 .menu-actions{display:grid;width:min(330px,100%);gap:13px;margin:auto}.menu-actions button{font-size:18px;padding:13px}
-.developer-credit{position:fixed;left:0;right:0;bottom:6px;text-align:center;color:rgba(255,255,255,.58);font-family:Arial,sans-serif;font-size:11px;letter-spacing:1px;pointer-events:none;text-shadow:1px 1px 2px #000;z-index:21}.developer-credit span{font-size:inherit;color:inherit}
 .rank-card{width:min(330px,100%);margin:16px auto 0;padding:10px 14px;border:2px solid rgba(255,255,255,.55);background:rgba(5,6,18,.72);font-family:Arial,sans-serif}.rank-card strong{display:block;color:#ffd329;font-family:Impact,"Arial Narrow",sans-serif;font-size:18px;letter-spacing:1px}.rank-card small{color:#fff;opacity:.85}.rank-bar{height:9px;margin-top:7px;border:2px solid #05050d;background:#34364c;overflow:hidden}.rank-bar div{height:100%;width:0;background:linear-gradient(90deg,#ffd329,#ff9d0b,#55e85a)}
 .game-rank{margin-top:5px;font-family:Arial,sans-serif;font-size:11px;font-weight:bold;color:#ffd329}
 .hidden{display:none!important}
@@ -138,9 +137,6 @@ kbd{background:#303963;border:1px solid white;padding:3px}
    <button id="menuMulti">MULTIPLAYER</button>
    <button id="menuSettings">SETTINGS</button>
    <button id="menuQuit">QUIT</button>
-  </div>
-  <div class="developer-credit" aria-label="Developed and owned by Jonhsen G. Ocampo">
-   <div class="developer-credit-text"><span>Developed &amp; owned by Jonhsen G. Ocampo</span></div>
   </div>
  </div>
 </div>
@@ -328,7 +324,6 @@ let buligSkillArt=0;
 let buligSkillArtMax=0;
 let buligSkillArtType="";
 let buligSkillArtSide=1;
-let customBuligVoice="assets/bulig-voice.m4a";
 let koWinner=null;
 let roundNumber=1;
 let roundWins=[0,0];
@@ -479,34 +474,11 @@ function arcadeOsc(start,end,duration=.16,type="square",volume=.09){
  osc.connect(gain).connect(ctx.destination);osc.start();osc.stop(ctx.currentTime+duration+.02);
 }
 
-function buligSkillVoice(){
- if(window.arcadeVoiceEnabled===false)return;
- if(customBuligVoice){
-  let recording=new Audio(customBuligVoice);
-  recording.volume=1;
-  recording.play().catch(()=>{});
-  return;
- }
- if(!("speechSynthesis" in window))return;
- window.speechSynthesis.cancel();
- let voice=new SpeechSynthesisUtterance("VIVO Y21 Nanakaw aguy!!");
- voice.rate=.82;
- voice.pitch=.72;
- voice.volume=1;
- let voices=window.speechSynthesis.getVoices();
- voice.voice=voices.find(v=>/Filipino|Tagalog/i.test(v.lang+" "+v.name))
-  ||voices.find(v=>/David|Mark|Guy|Male/i.test(v.name))
-  ||voices.find(v=>/^en/i.test(v.lang))
-  ||voices[0];
- window.speechSynthesis.speak(voice);
-}
-
 function buligSkillSound(type){
  try{
   arcadeNoise(type==="ultimate"?.48:.32,type==="ultimate"?.22:.16);
   arcadeOsc(type==="ultimate"?72:95,type==="ultimate"?28:48,type==="ultimate"?.58:.38,"sawtooth",type==="ultimate"?.18:.12);
   arcadeOsc(type==="ultimate"?440:330,70,type==="ultimate"?.42:.28,"square",.07);
-  setTimeout(buligSkillVoice,type==="ultimate"?90:40);
  }catch(e){}
 }
 
