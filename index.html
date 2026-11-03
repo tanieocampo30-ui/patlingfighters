@@ -89,6 +89,8 @@ kbd{background:#303963;border:1px solid white;padding:3px}
 .menu-sub{color:#75dfff;letter-spacing:6px;font-family:monospace;font-size:12px;margin-bottom:28px}
 .menu-actions{display:grid;width:min(330px,100%);gap:13px;margin:auto}.menu-actions button{font-size:18px;padding:13px}
 .developer-credit{position:fixed;left:0;right:0;bottom:6px;text-align:center;color:rgba(255,255,255,.58);font-family:Arial,sans-serif;font-size:11px;letter-spacing:1px;pointer-events:none;text-shadow:1px 1px 2px #000;z-index:21}.developer-credit span{font-size:inherit;color:inherit}
+.rank-card{width:min(330px,100%);margin:16px auto 0;padding:10px 14px;border:2px solid rgba(255,255,255,.55);background:rgba(5,6,18,.72);font-family:Arial,sans-serif}.rank-card strong{display:block;color:#ffd329;font-family:Impact,"Arial Narrow",sans-serif;font-size:18px;letter-spacing:1px}.rank-card small{color:#fff;opacity:.85}.rank-bar{height:9px;margin-top:7px;border:2px solid #05050d;background:#34364c;overflow:hidden}.rank-bar div{height:100%;width:0;background:linear-gradient(90deg,#ffd329,#ff9d0b,#55e85a)}
+.game-rank{margin-top:5px;font-family:Arial,sans-serif;font-size:11px;font-weight:bold;color:#ffd329}
 .hidden{display:none!important}
 .selection-message{min-height:22px;margin:8px 0;color:#ffcf2f;font-family:Arial,sans-serif;font-size:14px;font-weight:bold;letter-spacing:.5px}
 .selection-message.error{color:#ff728f}
@@ -126,7 +128,12 @@ kbd{background:#303963;border:1px solid white;padding:3px}
  <div class="menu-card">
   <h1 class="menu-logo">PATLING<br>FIGHTERS</h1>
   <div class="menu-sub">ARCADE EDITION</div>
-  <div class="menu-actions">
+   <div class="rank-card">
+    <strong id="menuRank">BRONZE RANK</strong>
+    <small id="menuRankProgress">0 / 100 RANK POINTS</small>
+    <div class="rank-bar"><div id="menuRankBar"></div></div>
+   </div>
+   <div class="menu-actions">
    <button id="menuNew">NEW GAME</button>
    <button id="menuMulti">MULTIPLAYER</button>
    <button id="menuSettings">SETTINGS</button>
@@ -220,6 +227,7 @@ RETRO PIXEL BATTLE — VERSION 2.0
 <div class="hud">
 <div>
 <div class="name">P1 — PLAYER</div>
+<div class="game-rank" id="p1Rank">BRONZE • 0 PTS</div>
 <div class="health"><div class="fill" id="hp1"></div></div>
 <div class="round-wins" id="p1Wins"><i></i><i></i><i></i></div>
 </div>
@@ -325,6 +333,10 @@ let koWinner=null;
 let roundNumber=1;
 let roundWins=[0,0];
 let matchResolved=false;
+const rankNames=["BRONZE","SILVER","GOLD","PLATINUM","GRANDMASTER","LEGENDARY","SUPREME"];
+const rankPoints=[0,100,300,600,1000,1500,2100];
+let rankProgressPoints=0;
+try{rankProgressPoints=Math.max(0,Number(localStorage.getItem("patlingRankPoints"))||0);}catch(e){}
 let hugCombo=0;
 let hugAttacker=null;
 let hugTarget=null;
@@ -363,6 +375,7 @@ const botDifficultySettings={
 const stages=[
  {name:"Bueno Bridge",image:"assets/bueno.png"},
  {name:"Pineda Resort",image:"assets/pineda.jpg"},
+ {name:"Paresan",image:"assets/paresan.jpg"},
  {name:"Municipality of Capas",image:"assets/battle-field.png"}
 ];
 
@@ -1125,6 +1138,49 @@ function updateRoundWins(){
  document.querySelectorAll("#p2Wins i").forEach((dot,i)=>dot.classList.toggle("won",i<roundWins[1]));
 }
 
+function getRankInfo(){
+ let index=0;
+ for(let i=rankPoints.length-1;i>=0;i--){
+  if(rankProgressPoints>=rankPoints[i]){index=i;break;}
+ }
+ let current=rankPoints[index];
+ let next=rankPoints[index+1];
+ return{
+  index:index,
+  name:rankNames[index],
+  current:current,
+  next:next,
+  progress:next===undefined?100:Math.min(100,(rankProgressPoints-current)/(next-current)*100),
+  needed:next===undefined?0:next-rankProgressPoints
+ };
+}
+
+function updateRankDisplay(){
+ let rank=getRankInfo();
+ let rankProgress=nextRankText(rank);
+ if($("menuRank")) $("menuRank").textContent=rank.name+" RANK";
+ if($("menuRankProgress")) $("menuRankProgress").textContent=rankProgress;
+ if($("menuRankBar")) $("menuRankBar").style.width=rank.progress+"%";
+ if($("p1Rank")) $("p1Rank").textContent=rank.name+" • "+rankProgressPoints+" PTS";
+}
+
+function nextRankText(rank){
+ return rank.next===undefined
+  ?rankProgressPoints+" RANK POINTS • MAX RANK"
+  :(rankProgressPoints+" / "+rank.next+" RANK POINTS • "+rank.needed+" TO "+rankNames[rank.index+1]);
+}
+
+function awardMatchWin(){
+ let previous=getRankInfo();
+ rankProgressPoints+=100;
+ try{localStorage.setItem("patlingRankPoints",String(rankProgressPoints));}catch(e){}
+ let current=getRankInfo();
+ updateRankDisplay();
+ return previous.index<current.index
+  ?" • RANK UP! "+current.name
+  :" • +100 RANK POINTS";
+}
+
 function finish(){
  if(over)return;
  active=false;
@@ -1683,7 +1739,9 @@ function resetMatch(){
 function showMatchResult(winner){
  let name=winner===0?roster[chosenPlayer].name:roster[chosenEnemy].name;
  $("matchWinner").textContent=name.toUpperCase()+" WINS THE MATCH!";
- $("matchSubtitle").textContent="MATCH COMPLETE • "+roundWins[winner]+" ROUNDS WON";
+ let rankReward=awardMatchWin();
+ let rank=getRankInfo();
+ $("matchSubtitle").textContent="MATCH COMPLETE • "+roundWins[winner]+" ROUNDS WON"+rankReward+" • "+rank.name+" RANK";
  $("matchPopup").classList.remove("hidden");
 }
 $("newMatch").onclick=()=>{
@@ -1860,6 +1918,7 @@ loop=function(now){
 };
 
 reset();
+updateRankDisplay();
 
 })();
 </script>
