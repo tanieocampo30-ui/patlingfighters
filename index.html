@@ -316,6 +316,11 @@ let roundIntroText="";
 let countdownTimers=[];
 let koTimer=0;
 let koResult="";
+let buligSkillArt=0;
+let buligSkillArtMax=0;
+let buligSkillArtType="";
+let buligSkillArtSide=1;
+let customBuligVoice="assets/bulig-voice.m4a";
 let koWinner=null;
 let roundNumber=1;
 let roundWins=[0,0];
@@ -337,7 +342,12 @@ const roster=[
  {name:"Vergel the Bogsa",icon:"◆",color:"#8d6ce7",skin:"#b97855",hair:"#211b2c",skill:"Bogsa Slam",image:"assets/vergel.png"},
  {name:"Bulig the Snatcher",icon:"✦",color:"#72c743",skin:"#b87955",hair:"#25221d",skill:"Quick Snatch",image:"assets/bulig.png"},
  {name:"Puking Mashua",icon:"☠",color:"#e8e3c8",skin:"#b87858",hair:"#34302d",skill:"Mashed Meteor",image:"assets/puking.png"},
- {name:"Banlag the Red",icon:"🔥",color:"#e6292e",skin:"#ba7451",hair:"#201316",skill:"Crimson Red Eye",image:"assets/banlag.png"}
+ {name:"Banlag the Red",icon:"🔥",color:"#e6292e",skin:"#ba7451",hair:"#201316",skill:"Crimson Red Eye",image:"assets/banlag.png"},
+ {name:"Justine the Eater",icon:"🍽",color:"#f2a93b",skin:"#d99b74",hair:"#32251d",skill:"Bottomless Bite",image:"assets/justine.png"},
+ {name:"Lance the Unli Seeker",icon:"♾",color:"#34d9c3",skin:"#c98762",hair:"#171a2c",skill:"Unlimited Search",image:"assets/lance.jpg"},
+ {name:"Renniel the Pig",icon:"🐷",color:"#ef9fb2",skin:"#d99b74",hair:"#5a3034",skill:"Pig Power Slam",image:"assets/rinniel.png"},
+ {name:"Ralph the Adik",icon:"⚡",color:"#9b7cff",skin:"#c98762",hair:"#211b2c",skill:"Adik Rush",image:"assets/ralphtheadik.png"},
+ {name:"Mikonasour",icon:"🦖",color:"#58c94a",skin:"#7ebd69",hair:"#243d2c",skill:"Dino Meteor",image:"assets/mikonasour.png"}
 ];
 let chosenPlayer=null;
 let chosenEnemy=1;
@@ -373,6 +383,8 @@ const B={
 const $=id=>document.getElementById(id);
 const battleFieldImage=new Image();
 battleFieldImage.src="assets/battle-field.png";
+const buligSkillImage=new Image();
+buligSkillImage.src="assets/powerupsbulig.jpg";
 const rosterPhotoImages=roster.map(fighter=>{
  let image=new Image();
  image.src=fighter.image||"";
@@ -452,6 +464,37 @@ function arcadeOsc(start,end,duration=.16,type="square",volume=.09){
  osc.type=type;osc.frequency.setValueAtTime(start,ctx.currentTime);osc.frequency.exponentialRampToValueAtTime(end,ctx.currentTime+duration);
  gain.gain.setValueAtTime(volume,ctx.currentTime);gain.gain.exponentialRampToValueAtTime(.001,ctx.currentTime+duration);
  osc.connect(gain).connect(ctx.destination);osc.start();osc.stop(ctx.currentTime+duration+.02);
+}
+
+function buligSkillVoice(){
+ if(window.arcadeVoiceEnabled===false)return;
+ if(customBuligVoice){
+  let recording=new Audio(customBuligVoice);
+  recording.volume=1;
+  recording.play().catch(()=>{});
+  return;
+ }
+ if(!("speechSynthesis" in window))return;
+ window.speechSynthesis.cancel();
+ let voice=new SpeechSynthesisUtterance("VIVO Y21 Nanakaw aguy!!");
+ voice.rate=.82;
+ voice.pitch=.72;
+ voice.volume=1;
+ let voices=window.speechSynthesis.getVoices();
+ voice.voice=voices.find(v=>/Filipino|Tagalog/i.test(v.lang+" "+v.name))
+  ||voices.find(v=>/David|Mark|Guy|Male/i.test(v.name))
+  ||voices.find(v=>/^en/i.test(v.lang))
+  ||voices[0];
+ window.speechSynthesis.speak(voice);
+}
+
+function buligSkillSound(type){
+ try{
+  arcadeNoise(type==="ultimate"?.48:.32,type==="ultimate"?.22:.16);
+  arcadeOsc(type==="ultimate"?72:95,type==="ultimate"?28:48,type==="ultimate"?.58:.38,"sawtooth",type==="ultimate"?.18:.12);
+  arcadeOsc(type==="ultimate"?440:330,70,type==="ultimate"?.42:.28,"square",.07);
+  setTimeout(buligSkillVoice,type==="ultimate"?90:40);
+ }catch(e){}
 }
 
 function attackVoice(type,attacker){
@@ -926,6 +969,64 @@ function draw(){
  fighter(A);
  fighter(B);
 
+ if(buligSkillArt>0&&buligSkillImage.complete){
+  let elapsed=1-buligSkillArt/buligSkillArtMax;
+  let entrance=Math.min(1,elapsed*8);
+  let exit=Math.min(1,(buligSkillArt/buligSkillArtMax)*2);
+  let scale=(.82+.18*Math.sin(elapsed*Math.PI*4))*entrance*exit;
+  let artWidth=220;
+  let artHeight=248;
+  let artX=buligSkillArtSide<0?4:W-artWidth-4;
+  let artY=8;
+  ctx.save();
+  ctx.globalAlpha=.75*entrance;
+  ctx.fillStyle=buligSkillArtType==="ultimate"?"#ffd329":"#72f44a";
+  for(let i=0;i<14;i++){
+   let y=18+i*18+(Math.sin(elapsed*12+i)*6);
+   ctx.fillRect(0,y,W*(.35+((i*37)%55)/100),3);
+  }
+  ctx.strokeStyle="#ffffff";
+  ctx.lineWidth=2;
+  for(let i=0;i<4;i++){
+   ctx.globalAlpha=(.2+.12*Math.sin(elapsed*9+i))*entrance;
+   ctx.beginPath();
+   ctx.arc(artX+artWidth/2,artY+artHeight/2,45+i*24+elapsed*25,0,Math.PI*2);
+   ctx.stroke();
+  }
+  ctx.restore();
+  ctx.save();
+  ctx.translate(artX+artWidth/2,artY+artHeight/2);
+  ctx.scale(scale,scale);
+  ctx.translate(-(artX+artWidth/2),-(artY+artHeight/2));
+  ctx.globalAlpha=.96*entrance;
+  ctx.fillStyle=buligSkillArtType==="ultimate"?"#ffd329":"#72f44a";
+  ctx.fillRect(artX-4,artY-4,artWidth+8,artHeight+8);
+  ctx.fillStyle="#090916";
+  ctx.fillRect(artX,artY,artWidth,artHeight);
+  ctx.save();
+  ctx.beginPath();
+  ctx.rect(artX,artY,artWidth,artHeight);
+  ctx.clip();
+  let sourceRatio=buligSkillImage.naturalWidth/buligSkillImage.naturalHeight;
+  let targetRatio=artWidth/artHeight;
+  let sx=0,sy=0,sw=buligSkillImage.naturalWidth,sh=buligSkillImage.naturalHeight;
+  if(sourceRatio>targetRatio){sw=sh*targetRatio;sx=(buligSkillImage.naturalWidth-sw)/2}
+  else{sh=sw/targetRatio;sy=buligSkillImage.naturalHeight*.03}
+  ctx.drawImage(buligSkillImage,sx,sy,sw,sh,artX,artY,artWidth,artHeight);
+  ctx.restore();
+  ctx.fillStyle="#fff";
+  ctx.font="italic bold 22px Impact";
+  ctx.textAlign="center";
+  ctx.shadowColor="#e52b4b";
+  ctx.shadowBlur=8;
+  ctx.fillText("I AM BULIG!!",artX+artWidth/2,artY-12);
+  ctx.shadowBlur=0;
+  ctx.font="italic bold 9px Impact";
+  ctx.fillStyle="#ffd329";
+  ctx.fillText(buligSkillArtType==="ultimate"?"BULIG ULTIMATE!":"QUICK SNATCH!",artX+artWidth/2,artY+artHeight-7);
+  ctx.restore();
+ }
+
  // Projectiles
  for(let p of projectiles){
 
@@ -960,9 +1061,9 @@ function draw(){
   rect(0,96,W,58,"#080914");
   ctx.globalAlpha=1;
   ctx.fillStyle="#fff";ctx.font="italic bold 25px Impact";ctx.textAlign="center";
-  ctx.fillText(hugCombo>0?"FULL BREATH COMBO":"ULTIMATE",240,132);
+   ctx.fillText(hugCombo>0?"FULL BREATH COMBO":buligSkillArtType==="breath"?"QUICK SNATCH":"ULTIMATE",240,132);
   ctx.fillStyle="#ffdf3a";ctx.font="italic bold 9px monospace";
-  ctx.fillText(hugCombo>0?"HUG  •  INHALE  •  RELEASE":"ANNOYINGLY POWERFUL!",240,145);
+   ctx.fillText(hugCombo>0?"HUG  •  INHALE  •  RELEASE":buligSkillArtType==="breath"?"SNATCH  •  STRIKE  •  DISAPPEAR":"ANNOYINGLY POWERFUL!",240,145);
  }
 
  if(screenFlash>0){
@@ -1151,6 +1252,19 @@ function attack(att,def,type){
 
  if(type==="breath"){
   if(dist>145){say("GET CLOSER FOR HUG COMBO!");att.cool=12;return}
+  if(att.portraitIndex===7){
+   buligSkillArtMax=48; buligSkillArt=buligSkillArtMax; buligSkillArtType="breath"; buligSkillArtSide=att===A?-1:1;
+   buligSkillSound("breath");
+   say("QUICK SNATCH!");
+   cinematic=30; hitStop=6; shake=8; screenFlash=5; att.attack=30;
+   if(dist<105)damage(att,def,16,9);
+   for(let i=0;i<30;i++)particles.push({
+    x:att.x+att.face*18,y:att.y-28+(Math.random()-.5)*35,
+    vx:att.face*(1+Math.random()*5),vy:(Math.random()-.5)*5,
+    life:20+Math.random()*18,max:38,color:["#72f44a","#fff06a","#ffffff"][i%3],size:4,type:"spark"
+   });
+   return;
+  }
   say("HUG! TAKE A BREATH!");
   hugCombo=48; hugBreath=48;
   hugAttacker=att; hugTarget=def;
@@ -1182,6 +1296,10 @@ function attack(att,def,type){
  if(type==="ultimate"){
   if(att.super<100){say("ULTIMATE NOT READY!");att.cool=10;return}
   att.super=0;
+  if(att.portraitIndex===7){
+   buligSkillArtMax=24; buligSkillArt=buligSkillArtMax; buligSkillArtType="ultimate"; buligSkillArtSide=att===A?-1:1;
+   buligSkillSound("ultimate");
+  }
   say("ULTIMATE STRIKE!");
 
   cinematic=24;hitStop=12;shake=16;screenFlash=14;superFlash=20;
@@ -1290,6 +1408,7 @@ function loop(now){
  if(screenFlash>0)screenFlash--;
  if(cinematic>0)cinematic--;
  if(superFlash>0)superFlash--;
+ if(buligSkillArt>0)buligSkillArt--;
  if(hugCombo>0){
   hugCombo--;hugBreath--;
   if(hugCombo===24&&!hugDamageDone){
@@ -1445,6 +1564,18 @@ function drawCharacterPortrait(canvas,fighter,index){
  if(fighter.name=== "Tupey the Dog"){
   px(3,6,10,8,fighter.skin);px(2,4,3,8,"#4b3024");px(11,4,3,8,"#4b3024");
   px(5,10,1,1,"#101018");px(10,10,1,1,"#101018");px(7,12,2,1,"#201018");px(7,13,2,1,"#d9898d");
+  return;
+ }
+ if(fighter.name==="Renniel the Pig"){
+  px(3,4,10,10,fighter.color);px(2,6,2,5,"#ef9fb2");px(12,6,2,5,"#ef9fb2");
+  px(5,10,6,3,"#f5c1cb");px(6,10,1,1,"#5a3034");px(9,10,1,1,"#5a3034");
+  px(4,7,1,1,"#101018");px(11,7,1,1,"#101018");px(5,12,6,4,fighter.color);
+  return;
+ }
+ if(fighter.name==="Mikonasour"){
+  px(2,3,12,3,"#58c94a");px(3,6,9,7,"#58c94a");px(10,8,4,2,"#58c94a");
+  px(12,8,3,2,"#7ed16f");px(11,9,1,1,"#101018");px(2,4,2,2,"#58c94a");
+  px(4,13,3,3,"#58c94a");px(9,13,3,3,"#58c94a");px(1,11,3,2,"#58c94a");
   return;
  }
  px(4,3,8,11,fighter.hair);px(5,2,6,2,fighter.hair);px(5,5,6,7,fighter.skin);px(4,6,1,5,fighter.hair);px(11,6,1,5,fighter.hair);
