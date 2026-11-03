@@ -373,6 +373,11 @@ const B={
 const $=id=>document.getElementById(id);
 const battleFieldImage=new Image();
 battleFieldImage.src="assets/battle-field.png";
+const rosterPhotoImages=roster.map(fighter=>{
+ let image=new Image();
+ image.src=fighter.image||"";
+ return image;
+});
 const rosterPortraits=roster.map((fighter,index)=>{
  let canvas=document.createElement("canvas");
  canvas.width=48;canvas.height=42;
@@ -634,6 +639,22 @@ function fighter(p){
  if(hugCombo>0 && hugAttacker && hugTarget){
   if(p===hugAttacker){x=hugAttackerX;dir=hugAttacker.face;}
   if(p===hugTarget){x=hugAttackerX+hugAttacker.face*20;dir=-hugAttacker.face;}
+ }
+ let photo=p.portraitIndex!==undefined?rosterPhotoImages[p.portraitIndex]:null;
+ if(photo&&photo.complete&&photo.naturalWidth){
+  ctx.save();
+  rect(x-14,F+3,62,5,"#080918");
+  let height=116,width=58;
+  let ratio=photo.naturalWidth/photo.naturalHeight;
+  width=Math.min(width,height*ratio);
+  ctx.translate(x+15,F-18);
+  ctx.scale(dir,1);
+  ctx.translate(-15,0);
+  ctx.imageSmoothingEnabled=true;
+  ctx.imageSmoothingQuality="high";
+  ctx.drawImage(photo,-width/2,-height,width,height);
+  ctx.restore();
+  return;
  }
  let front=dir===1;
  let accent=p.kind===1?"#ffcf3a":"#63e3ff";
