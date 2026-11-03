@@ -375,13 +375,14 @@ const battleFieldImage=new Image();
 battleFieldImage.src="assets/battle-field.png";
 const rosterPortraits=roster.map((fighter,index)=>{
  let canvas=document.createElement("canvas");
- canvas.width=16;canvas.height=14;
+ canvas.width=48;canvas.height=42;
  if(!fighter.image)return canvas;
  let image=new Image();
  image.src=fighter.image;
  image.onload=()=>{
   let ctx=canvas.getContext("2d",{willReadFrequently:true});
-  ctx.imageSmoothingEnabled=false;
+  ctx.imageSmoothingEnabled=true;
+  ctx.imageSmoothingQuality="high";
   ctx.clearRect(0,0,canvas.width,canvas.height);
   let sourceRatio=image.naturalWidth/image.naturalHeight;
   let targetRatio=canvas.width/canvas.height;
@@ -688,6 +689,8 @@ function fighter(p){
  if(portrait){
   ctx.save();ctx.beginPath();ctx.rect(x+8,top+4,16,12);ctx.clip();
   ctx.imageSmoothingEnabled=false;
+  ctx.imageSmoothingEnabled=true;
+  ctx.imageSmoothingQuality="high";
   ctx.drawImage(portrait,x+7,top+4,18,13);
   ctx.restore();
  }
