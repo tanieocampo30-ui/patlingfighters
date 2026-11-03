@@ -371,18 +371,32 @@ const B={
 };
 
 const $=id=>document.getElementById(id);
-const markImage=new Image();
-markImage.src="assets/mark-yumul.png";
-const markPixelCanvas=document.createElement("canvas");
-markPixelCanvas.width=16;markPixelCanvas.height=14;
-const markPixelCtx=markPixelCanvas.getContext("2d",{willReadFrequently:true});
-markPixelCtx.imageSmoothingEnabled=false;
 const battleFieldImage=new Image();
 battleFieldImage.src="assets/battle-field.png";
-markImage.onload=()=>{
- markPixelCtx.clearRect(0,0,16,14);
- markPixelCtx.drawImage(markImage,190,30,390,500,0,0,16,14);
-};
+const rosterPortraits=roster.map((fighter,index)=>{
+ let canvas=document.createElement("canvas");
+ canvas.width=16;canvas.height=14;
+ if(!fighter.image)return canvas;
+ let image=new Image();
+ image.src=fighter.image;
+ image.onload=()=>{
+  let ctx=canvas.getContext("2d",{willReadFrequently:true});
+  ctx.imageSmoothingEnabled=false;
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  let sourceRatio=image.naturalWidth/image.naturalHeight;
+  let targetRatio=canvas.width/canvas.height;
+  let sx=0,sy=0,sw=image.naturalWidth,sh=image.naturalHeight;
+  if(sourceRatio>targetRatio){
+   sw=image.naturalHeight*targetRatio;
+   sx=(image.naturalWidth-sw)/2;
+  }else{
+   sh=image.naturalWidth/targetRatio;
+   sy=image.naturalHeight*.04;
+  }
+  ctx.drawImage(image,sx,sy,sw,sh,0,0,canvas.width,canvas.height);
+ };
+ return canvas;
+});
 let audioContext=null;
 let musicTimer=null;
 let musicStep=0;
@@ -669,11 +683,12 @@ function fighter(p){
  rect(x+9,top+5,14,12,p.skin);
  rect(x+8,top+15,16,3,"#cc806d");
 
- // Mark's reference photo converted to a small pixel portrait.
- if(p.kind===2&&markImage.complete&&markImage.naturalWidth){
+ // Use each fighter's real photo as a small pixel face in battle.
+ let portrait=p.portraitIndex!==undefined?rosterPortraits[p.portraitIndex]:null;
+ if(portrait){
   ctx.save();ctx.beginPath();ctx.rect(x+8,top+4,16,12);ctx.clip();
   ctx.imageSmoothingEnabled=false;
-  ctx.drawImage(markPixelCanvas,x+7,top+4,18,13);
+  ctx.drawImage(portrait,x+7,top+4,18,13);
   ctx.restore();
  }
 
@@ -1310,8 +1325,8 @@ function showScreen(id){
 function applyRosterCharacter(){
  if(chosenPlayer===null)return;
  let player=roster[chosenPlayer], enemy=roster[chosenEnemy];
- Object.assign(A,{color:player.color,skin:player.skin,hair:player.hair,kind:chosenPlayer===1?2:1});
- Object.assign(B,{color:enemy.color,skin:enemy.skin,hair:enemy.hair,kind:chosenEnemy===1?2:1});
+ Object.assign(A,{color:player.color,skin:player.skin,hair:player.hair,kind:chosenPlayer===1?2:1,portraitIndex:chosenPlayer});
+ Object.assign(B,{color:enemy.color,skin:enemy.skin,hair:enemy.hair,kind:chosenEnemy===1?2:1,portraitIndex:chosenEnemy});
  document.querySelector(".hud .name:not(.right .name)").textContent="P1 — "+player.name.toUpperCase();
  document.querySelector(".hud .right .name").textContent="P2 — "+enemy.name.toUpperCase();
  document.querySelector(".panel:first-child h3").textContent="PLAYER 1 — "+player.name.toUpperCase();
