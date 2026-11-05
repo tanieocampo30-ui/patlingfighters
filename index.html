@@ -88,13 +88,34 @@ kbd{background:#303963;border:1px solid white;padding:3px}
 .menu-card{animation:menuReveal .55s cubic-bezier(.2,.8,.2,1) both}.menu-logo{font-size:clamp(42px,9vw,78px);line-height:.82;margin:0 0 12px;color:#ffd329;font-style:italic;letter-spacing:2px;text-shadow:-4px 4px #e52b4b,-9px 9px #05050d;animation:logoEntrance .8s ease-out both,logoBattle 4s 1s infinite}.menu-actions button{animation:menuReveal .45s ease-out both}.menu-actions button:nth-child(2){animation-delay:.08s}.menu-actions button:nth-child(3){animation-delay:.16s}.menu-actions button:nth-child(4){animation-delay:.24s}
 .menu-sub{color:#75dfff;letter-spacing:6px;font-family:monospace;font-size:12px;margin-bottom:28px}
 .menu-actions{display:grid;width:min(330px,100%);gap:13px;margin:auto}.menu-actions button{font-size:18px;padding:13px}
-.rank-card{width:min(330px,100%);margin:16px auto 0;padding:10px 14px;border:2px solid rgba(255,255,255,.55);background:rgba(5,6,18,.72);font-family:Arial,sans-serif}.rank-card strong{display:block;color:#ffd329;font-family:Impact,"Arial Narrow",sans-serif;font-size:18px;letter-spacing:1px}.rank-card small{color:#fff;opacity:.85}.rank-bar{height:9px;margin-top:7px;border:2px solid #05050d;background:#34364c;overflow:hidden}.rank-bar div{height:100%;width:0;background:linear-gradient(90deg,#ffd329,#ff9d0b,#55e85a)}
-.game-rank{margin-top:5px;font-family:Arial,sans-serif;font-size:11px;font-weight:bold;color:#ffd329}
+.rank-card{width:min(330px,100%);margin:16px auto 0;padding:10px 14px;border:2px solid rgba(255,255,255,.55);background:rgba(5,6,18,.72);font-family:Arial,sans-serif}.rank-card-content{display:grid;grid-template-columns:70px 1fr;align-items:center;gap:12px;text-align:left}.rank-logo{width:70px;height:70px;object-fit:contain;filter:drop-shadow(4px 5px 0 rgba(0,0,0,.65))}.rank-card strong{display:block;color:#ffd329;font-family:Impact,"Arial Narrow",sans-serif;font-size:18px;letter-spacing:1px}.rank-card small{color:#fff;opacity:.85}.rank-bar{height:9px;margin-top:7px;border:2px solid #05050d;background:#34364c;overflow:hidden}.rank-bar div{height:100%;width:0;background:linear-gradient(90deg,#ffd329,#ff9d0b,#55e85a)}
+.game-rank-row{display:flex;align-items:center;justify-content:flex-start;gap:5px;margin-top:5px}.game-rank{font-family:Arial,sans-serif;font-size:11px;font-weight:bold;color:#ffd329}.hud-rank-logo{width:24px;height:24px;object-fit:contain;image-rendering:auto}
 .hidden{display:none!important}
+#mainMenu.arcade-menu{background:radial-gradient(circle at 50% 42%,rgba(67,25,15,.28) 0 16%,transparent 42%),linear-gradient(180deg,#09080d 0%,#08070b 62%,#100604 100%);overflow:hidden}
+#mainMenu.arcade-menu:before{background:repeating-linear-gradient(90deg,transparent 0 48px,rgba(255,255,255,.018) 49px 50px),repeating-linear-gradient(0deg,rgba(255,255,255,.018) 0 2px,transparent 2px 8px);opacity:.7}
+#mainMenu .menu-card{width:min(720px,94vw);border:0;background:transparent;box-shadow:none;padding:18px 24px 12px;clip-path:none;overflow:visible}
+#mainMenu .menu-logo{position:relative;margin-bottom:2px;color:#ffcf25;text-transform:uppercase;font-family:Impact,"Arial Black",sans-serif;font-size:clamp(58px,10vw,112px);line-height:.72;letter-spacing:-2px;text-shadow:5px 3px 0 #c71d18,-7px 8px 0 rgba(0,0,0,.9),0 0 18px rgba(255,77,18,.65);transform:skew(-7deg) rotate(-2deg);filter:drop-shadow(0 18px 14px rgba(0,0,0,.85));animation:logoEntrance .75s ease-out both,arcadeLogoFire 3.2s 1s infinite}
+#mainMenu .menu-logo:after{content:"";position:absolute;left:-4%;right:-4%;bottom:-15px;height:18px;background:linear-gradient(90deg,transparent,#ffdd28 8%,#e52b4b 32%,#ff6a16 58%,#ffd329 82%,transparent);clip-path:polygon(0 55%,12% 20%,24% 60%,38% 5%,53% 58%,68% 12%,82% 53%,100% 0,100% 100%,0 100%);filter:blur(.5px);animation:flameLine .42s infinite alternate}
+#mainMenu .menu-sub{margin:8px 0 8px;color:#b96a38;font-size:11px;letter-spacing:9px;text-shadow:0 0 8px rgba(255,89,0,.8)}
+#mainMenu .rank-card{width:min(390px,88vw);margin:0 auto 12px;border-color:#ffb224;background:rgba(10,7,10,.78);box-shadow:0 0 18px rgba(255,73,20,.16);clip-path:polygon(2% 0,98% 0,100% 18%,98% 100%,2% 100%,0 82%)}
+#mainMenu .menu-actions{width:min(300px,76vw);gap:7px}
+#mainMenu .menu-actions button{padding:8px 12px;border:0;background:none;box-shadow:none;color:#ff9d16;font-family:"Courier New",monospace;font-size:clamp(20px,3vw,29px);font-weight:900;text-transform:uppercase;text-shadow:-2px 0 #4d12d8,2px 0 #1d6fff,0 3px #05050d,0 0 10px #ff6a16}
+#mainMenu .menu-actions button:hover,#mainMenu .menu-actions button:focus{color:#fff4bd;background:linear-gradient(90deg,transparent,rgba(229,43,75,.75),transparent);text-shadow:-2px 0 #ff2a2a,2px 0 #ffd329,0 0 14px #ffb21c;transform:scale(1.08)}
+#mainMenu .menu-actions button:first-child:before{content:"▶";margin-right:10px;color:#ffd329;font-size:.62em;text-shadow:0 0 8px #ff4d1a}
+@keyframes arcadeLogoFire{0%,100%{text-shadow:5px 3px 0 #c71d18,-7px 8px 0 rgba(0,0,0,.9),0 0 18px rgba(255,77,18,.65)}50%{text-shadow:7px 2px 0 #ff2822,-8px 10px 0 rgba(0,0,0,.9),0 0 26px rgba(255,155,18,.95)}}
+@keyframes flameLine{from{transform:scaleX(.98) translateY(1px);filter:hue-rotate(-4deg)}to{transform:scaleX(1.02) translateY(-2px);filter:hue-rotate(12deg)}}
+.home-embers{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.home-ember{position:absolute;bottom:-20px;width:3px;height:3px;border-radius:50%;background:#fff4a4;box-shadow:0 0 6px 2px #ff4d18;animation:emberRise var(--ember-speed) linear infinite;left:var(--ember-left);animation-delay:var(--ember-delay)}
+@keyframes emberRise{0%{opacity:0;transform:translate(0,0) scale(.6)}15%{opacity:1}70%{opacity:.9}100%{opacity:0;transform:translate(var(--ember-drift),-105vh) scale(.15)}}
+.account-bar{position:absolute;z-index:25;right:18px;top:18px;display:flex;align-items:center;gap:8px}.account-bar button{min-width:0;padding:8px 12px;font-size:13px;box-shadow:3px 3px 0 var(--red)}.account-status{color:#fff;font-family:Arial,sans-serif;font-size:12px;font-weight:bold;text-align:right;text-shadow:2px 2px #05050d}.account-status strong{display:block;color:#ffd329}.auth-overlay{position:fixed;inset:0;z-index:1000;display:flex;align-items:center;justify-content:center;padding:20px;background:rgba(3,3,10,.88)}#authOverlay.hidden{display:none!important}.auth-box{width:min(390px,92vw);padding:26px;border:4px solid #fff1bd;background:#11142b;box-shadow:0 0 0 5px #e52b4b,12px 14px #000;text-align:center}.auth-box h2{margin:0 0 18px;color:#ffd329;font-size:30px;font-style:italic;text-shadow:-3px 3px #e52b4b}.auth-box input{box-sizing:border-box;width:100%;margin:6px 0;padding:12px;border:2px solid #777;background:#070815;color:white;font-family:Arial}.auth-switch{margin-top:14px;color:#75dfff;font-family:Arial;font-size:13px;cursor:pointer}.auth-message{min-height:20px;margin:10px 0 0;color:#ff728f;font-family:Arial;font-weight:bold}.skin-picker{position:absolute;right:18px;top:18px;z-index:5;text-align:right}.skin-picker button{padding:7px 10px;font-size:12px}.skin-panel{position:absolute;right:-1px;top:43px;width:190px;padding:8px;border:3px solid #fff1bd;background:#090b18;box-shadow:5px 6px #000}.skin-panel button{display:block;width:100%;margin:4px 0;padding:7px;font-size:12px}.skin-panel button.owned{background:#67db67;color:#090916}.fighter-preview.skin-ember{filter:sepia(.55) saturate(2) hue-rotate(-25deg) drop-shadow(12px 13px 0 rgba(0,0,0,.42))}.fighter-preview.skin-neon{filter:saturate(2.2) hue-rotate(70deg) drop-shadow(12px 13px 0 rgba(0,0,0,.42))}.fighter-preview.skin-champion{filter:sepia(.8) saturate(2) hue-rotate(8deg) drop-shadow(12px 13px 0 rgba(0,0,0,.42))}
+.arcade-menu:not(#mainMenu){background:radial-gradient(circle at 50% 115%,rgba(255,92,12,.42),transparent 28%),radial-gradient(circle at 18% 100%,rgba(229,43,75,.18),transparent 18%),linear-gradient(180deg,#09080d 0%,#08070b 68%,#150806 100%)}
+.arcade-menu:not(#mainMenu):before{background:repeating-linear-gradient(90deg,transparent 0 48px,rgba(255,255,255,.018) 49px 50px),repeating-linear-gradient(0deg,rgba(255,255,255,.018) 0 2px,transparent 2px 8px);animation:menuHeat 5s ease-in-out infinite alternate}
+.arcade-menu:not(#mainMenu):after{content:"";position:absolute;left:-10%;right:-10%;bottom:-28px;height:80px;background:linear-gradient(180deg,transparent 10%,rgba(255,78,12,.18) 58%,rgba(255,211,41,.12));clip-path:polygon(0 100%,0 64%,4% 50%,8% 72%,13% 35%,18% 68%,23% 42%,29% 75%,35% 30%,41% 66%,47% 38%,53% 70%,59% 24%,65% 61%,71% 40%,77% 73%,83% 28%,90% 64%,95% 38%,100% 70%,100% 100%);filter:blur(3px);opacity:.75;animation:flameGround .6s ease-in-out infinite alternate;pointer-events:none}
+@keyframes menuHeat{from{filter:brightness(.85) hue-rotate(-5deg);transform:scale(1)}to{filter:brightness(1.1) hue-rotate(8deg);transform:scale(1.01)}}
+@keyframes flameGround{from{transform:translateY(5px) scaleX(.98);filter:blur(4px)}to{transform:translateY(-8px) scaleX(1.03);filter:blur(2px)}}
 .selection-message{min-height:22px;margin:8px 0;color:#ffcf2f;font-family:Arial,sans-serif;font-size:14px;font-weight:bold;letter-spacing:.5px}
 .selection-message.error{color:#ff728f}
-.select-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin:16px 0;max-height:58vh;overflow-y:auto;padding:5px}.select-card{min-height:176px;min-width:0;border:3px solid #777;background:#11152d;padding:7px;box-shadow:4px 5px #000;color:white;text-shadow:1px 1px #000}.select-card:hover,.select-card.selected{border-color:#ffd329;background:#3a3157;transform:translateY(-3px)}
-.select-avatar{height:82px;display:flex;align-items:center;justify-content:center;border-bottom:2px solid rgba(255,255,255,.18);margin-bottom:7px;background:linear-gradient(145deg,#24385e,#101325);overflow:hidden}.select-avatar canvas,.select-avatar img{width:72px;height:72px;image-rendering:pixelated;object-fit:cover;object-position:center top}.select-card strong{display:block;min-height:34px;font-family:Arial,sans-serif;font-size:13px;font-weight:900;line-height:1.08;color:#fff;letter-spacing:.1px;text-transform:none}.select-card small{display:block;color:#fff4a4;font-family:Arial,sans-serif;font-size:11px;font-weight:bold;line-height:1.25;margin-top:5px}.difficulty-row{display:flex;justify-content:center;gap:8px;margin:-2px 0 14px}.difficulty-row button{min-width:78px;padding:8px 10px;font-size:14px;box-shadow:3px 3px 0 var(--red)}.difficulty-row button.selected{background:white;color:#e52b4b}.select-actions{display:flex;justify-content:center;gap:12px}.map-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:18px 0}.map-card{min-width:0;border:3px solid #777;background:#11152d;padding:8px;color:white;box-shadow:4px 5px #000}.map-card.selected{border-color:#ffd329;background:#3a3157}.map-image{height:150px;margin-bottom:10px;background:#090b18;overflow:hidden;border-bottom:3px solid #e52b4b}.map-image img{width:100%;height:100%;object-fit:cover}.map-card strong{display:block;font-family:Arial,sans-serif;font-size:16px;font-weight:900}.settings-row{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #666;padding:14px 0;font-family:Arial}.settings-row input{accent-color:#ffd329}.back-top{position:absolute;left:16px;top:16px}
+.fighter-select-stage{position:relative;height:min(320px,38vh);min-height:220px;margin:8px -16px 0;border-top:3px solid rgba(255,255,255,.65);border-bottom:3px solid rgba(255,255,255,.65);background-color:#1d2238;background-position:center;background-size:cover;overflow:hidden;box-shadow:inset 0 0 100px rgba(0,0,0,.72)}.fighter-select-stage:before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(8,8,20,.25),transparent 35%,transparent 65%,rgba(8,8,20,.25)),linear-gradient(0deg,rgba(5,5,15,.8),transparent 35%);pointer-events:none}.fighter-preview{position:absolute;left:50%;bottom:-8%;height:110%;max-height:none;max-width:58%;object-fit:contain;object-position:center bottom;filter:drop-shadow(12px 13px 0 rgba(0,0,0,.42));transform:translateX(-50%) scale(.96);transition:.18s ease-out}.fighter-preview.change{animation:fighterPreviewIn .22s ease-out}.fighter-identity{position:absolute;left:18px;bottom:16px;width:48%;text-align:left;text-shadow:-3px 3px #05050d}.fighter-identity strong{display:block;color:#fff1bd;font-family:Impact,"Arial Narrow",sans-serif;font-size:clamp(28px,5vw,54px);font-style:italic;line-height:.85;letter-spacing:1px;transform:skew(-6deg)}.fighter-identity small{display:inline-block;margin-top:8px;padding:4px 9px;color:#05050d;background:#ffd329;font-family:Arial,sans-serif;font-size:12px;font-weight:900}.fighter-side-label{position:absolute;right:18px;bottom:19px;color:white;font-family:Arial,sans-serif;font-size:12px;font-weight:900;letter-spacing:2px;text-shadow:2px 2px #05050d}.fighter-roster-wrap{background:rgba(4,5,18,.88);border-bottom:3px solid rgba(255,255,255,.25);padding:9px 0 8px}.select-grid{display:grid;grid-template-columns:repeat(15,52px);gap:7px;justify-content:start;margin:0;max-width:100%;overflow-x:auto;overflow-y:hidden;padding:5px 8px}.select-card{width:52px;height:52px;min-width:52px;padding:2px;border:3px solid #d4d4d8;background:linear-gradient(145deg,#6f7d99,#15182b);box-shadow:0 0 0 2px rgba(0,0,0,.9),3px 4px 0 #000;border-radius:50%;overflow:hidden;color:white;transform:none}.select-card:hover,.select-card.selected-player,.select-card.selected-enemy{border-color:#ffd329;transform:translateY(-3px) scale(1.08);box-shadow:0 0 0 2px #fff,0 0 16px rgba(255,211,41,.9)}.select-card.selected-enemy{border-color:#ff526d;box-shadow:0 0 0 2px #fff,0 0 16px rgba(255,82,109,.9)}.select-avatar{height:100%;border:0;margin:0;background:none;overflow:hidden}.select-avatar canvas,.select-avatar img{width:100%;height:100%;object-fit:cover;object-position:center top;image-rendering:auto}.select-card strong,.select-card small{display:none}.fighter-side-picker{display:flex;justify-content:center;gap:8px;margin:2px 0 8px}.fighter-side-picker button{min-width:128px;padding:8px 12px;font-size:14px;box-shadow:3px 3px 0 var(--red)}.fighter-side-picker button.active{background:white;color:#e52b4b}.difficulty-row{display:flex;justify-content:center;gap:8px;margin:2px 0 8px}.difficulty-row button{min-width:78px;padding:8px 10px;font-size:14px;box-shadow:3px 3px 0 var(--red)}.difficulty-row button.selected{background:white;color:#e52b4b}.select-actions{display:flex;justify-content:center;gap:12px}.map-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:18px 0}.map-card{min-width:0;border:3px solid #777;background:#11152d;padding:8px;color:white;box-shadow:4px 5px #000}.map-card.selected{border-color:#ffd329;background:#3a3157}.map-image{height:150px;margin-bottom:10px;background:#090b18;overflow:hidden;border-bottom:3px solid #e52b4b}.map-image img{width:100%;height:100%;object-fit:cover}.map-card.coming-soon{opacity:.72;cursor:not-allowed;background:#090a18}.map-card.coming-soon .map-image{display:grid;place-items:center;background:linear-gradient(135deg,#17192c,#090a16)}.map-lock-icon{font-size:0}.map-lock-icon:before{content:"\1f512";display:grid;place-items:center;width:58px;height:58px;border:3px solid #777;color:#bbb;background:#11131f;border-radius:50%;font-size:30px;box-shadow:0 5px 0 #05050d,0 0 18px rgba(255,255,255,.12)}.map-coming-soon{display:block;margin-top:5px;color:#ffd329;font-family:Arial,sans-serif;font-size:11px;font-weight:900;letter-spacing:2px}.map-card strong{display:block;font-family:Arial,sans-serif;font-size:16px;font-weight:900}.settings-row{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #666;padding:14px 0;font-family:Arial}.settings-row input{accent-color:#ffd329}.back-top{position:absolute;left:16px;top:16px}@keyframes fighterPreviewIn{from{opacity:.15;transform:translateX(-50%) translateY(18px) scale(.88)}to{opacity:1;transform:translateX(-50%) scale(.96)}}#characterSelect .fighter-select-card{height:min(760px,94vh);overflow:hidden}#characterSelect .fighter-select-card h1{margin-bottom:2px}#characterSelect #fighterSelectionMessage{min-height:18px;margin:3px 0}#characterSelect .select-actions{padding-top:0}@media(max-width:650px){#characterSelect .fighter-select-card{height:calc(100dvh - 20px);padding:18px 10px}#characterSelect .fighter-select-stage{height:38vh;min-height:190px;margin-left:-10px;margin-right:-10px}#characterSelect .fighter-preview{max-width:72%;height:105%}#characterSelect .fighter-identity strong{font-size:30px}#characterSelect .select-grid{grid-template-columns:repeat(15,46px)}#characterSelect .select-card{width:46px;height:46px;min-height:46px}#characterSelect #selectGrid{height:auto;min-height:56px;flex:none}}
 #characterSelect .menu-card{overflow:hidden;max-height:94vh;display:flex;flex-direction:column}#characterSelect h1,#modeLabel{position:relative;z-index:2;flex-shrink:0}#characterSelect .select-grid{min-height:0;flex:1 1 auto}#characterSelect .select-actions{flex-shrink:0;padding-top:8px}.select-grid::-webkit-scrollbar{width:10px}.select-grid::-webkit-scrollbar-track{background:#090b18}.select-grid::-webkit-scrollbar-thumb{background:#ffd329;border:2px solid #090b18}
 @media(max-width:850px){.select-grid{grid-template-columns:repeat(3,1fr)}.map-grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:650px){
@@ -124,12 +145,24 @@ kbd{background:#303963;border:1px solid white;padding:3px}
 
 <body>
 <div id="mainMenu" class="arcade-menu">
+ <div class="account-bar">
+  <div class="account-status" id="accountStatus">GUEST<div>LOCAL RANK</div></div>
+  <button id="accountButton">LOGIN</button>
+ </div>
+ <div class="home-embers" aria-hidden="true">
+  <i class="home-ember" style="--ember-left:8%;--ember-speed:7s;--ember-delay:-2s;--ember-drift:24px"></i><i class="home-ember" style="--ember-left:18%;--ember-speed:9s;--ember-delay:-6s;--ember-drift:-18px"></i><i class="home-ember" style="--ember-left:28%;--ember-speed:8s;--ember-delay:-3s;--ember-drift:32px"></i><i class="home-ember" style="--ember-left:38%;--ember-speed:6s;--ember-delay:-5s;--ember-drift:-25px"></i><i class="home-ember" style="--ember-left:48%;--ember-speed:10s;--ember-delay:-1s;--ember-drift:16px"></i><i class="home-ember" style="--ember-left:58%;--ember-speed:7s;--ember-delay:-4s;--ember-drift:-30px"></i><i class="home-ember" style="--ember-left:68%;--ember-speed:9s;--ember-delay:-7s;--ember-drift:20px"></i><i class="home-ember" style="--ember-left:78%;--ember-speed:6s;--ember-delay:-3s;--ember-drift:-15px"></i><i class="home-ember" style="--ember-left:88%;--ember-speed:8s;--ember-delay:-5s;--ember-drift:28px"></i><i class="home-ember" style="--ember-left:94%;--ember-speed:11s;--ember-delay:-8s;--ember-drift:-22px"></i>
+ </div>
  <div class="menu-card">
   <h1 class="menu-logo">PATLING<br>FIGHTERS</h1>
   <div class="menu-sub">ARCADE EDITION</div>
    <div class="rank-card">
-    <strong id="menuRank">BRONZE RANK</strong>
-    <small id="menuRankProgress">0 / 100 RANK POINTS</small>
+    <div class="rank-card-content">
+     <img id="menuRankLogo" class="rank-logo" src="assets/ranks/bronze.svg" alt="">
+     <div>
+      <strong id="menuRank">BRONZE RANK</strong>
+      <small id="menuRankProgress">0 / 100 RANK POINTS</small>
+     </div>
+    </div>
     <div class="rank-bar"><div id="menuRankBar"></div></div>
    </div>
    <div class="menu-actions">
@@ -142,7 +175,7 @@ kbd{background:#303963;border:1px solid white;padding:3px}
 </div>
 
 <div id="characterSelect" class="arcade-menu hidden">
- <div class="menu-card" style="width:min(760px,94vw)">
+ <div class="menu-card fighter-select-card" style="width:min(980px,96vw)">
   <button class="back-top" id="selectBack">BACK</button>
   <h1 style="font-size:38px">CHOOSE YOUR FIGHTER</h1>
   <div id="modeLabel" class="menu-sub">BOT MATCH</div>
@@ -152,7 +185,21 @@ kbd{background:#303963;border:1px solid white;padding:3px}
    <button data-difficulty="hard">HARD</button>
    <button data-difficulty="extreme">EXTREME</button>
   </div>
-  <div id="selectGrid" class="select-grid"></div>
+   <div class="fighter-side-picker" aria-label="Choose fighter side">
+    <button id="selectPlayerSide" class="active" type="button">PLAYER 1</button>
+    <button id="selectEnemySide" type="button">PLAYER 2 / ENEMY</button>
+   </div>
+   <div class="fighter-select-stage" id="fighterSelectStage">
+    <div class="skin-picker">
+     <button id="skinToggle" type="button">SKINS</button>
+     <div id="skinPanel" class="skin-panel hidden"></div>
+    </div>
+    <img id="fighterPreview" class="fighter-preview" src="assets/gabriela.png" alt="">
+   <div class="fighter-identity"><strong id="fighterPreviewName">SELECT A FIGHTER</strong><small id="fighterPreviewSkill">CHOOSE YOUR PATLING</small></div>
+   <div class="fighter-side-label">PLAYER 1</div>
+  </div>
+
+  <div class="fighter-roster-wrap"><div id="selectGrid" class="select-grid"></div></div>
   <div id="fighterSelectionMessage" class="selection-message" role="alert" aria-live="polite"></div>
   <div class="select-actions"><button id="confirmCharacter">CONFIRM FIGHTER</button></div>
  </div>
@@ -223,7 +270,7 @@ RETRO PIXEL BATTLE — VERSION 2.0
 <div class="hud">
 <div>
 <div class="name">P1 — PLAYER</div>
-<div class="game-rank" id="p1Rank">BRONZE • 0 PTS</div>
+<div class="game-rank-row"><img id="p1RankLogo" class="hud-rank-logo" src="assets/ranks/bronze.svg" alt=""><div class="game-rank" id="p1Rank">BRONZE • 0 PTS</div></div>
 <div class="health"><div class="fill" id="hp1"></div></div>
 <div class="round-wins" id="p1Wins"><i></i><i></i><i></i></div>
 </div>
@@ -296,6 +343,16 @@ L — Ultimate Attack
  </div>
 </div>
 
+<div id="authOverlay" class="auth-overlay hidden" role="dialog" aria-modal="true">
+ <form class="auth-box" id="authForm">
+  <h2 id="authTitle">PLAYER LOGIN</h2>
+  <input id="authUsername" maxlength="24" autocomplete="username" placeholder="Username" required>
+  <input id="authPassword" type="password" minlength="6" autocomplete="current-password" placeholder="Password" required>
+  <button id="authSubmit" type="submit">LOGIN</button>
+  <div class="auth-message" id="authMessage" role="alert"></div>
+  <div class="auth-switch" id="authSwitch">No account? REGISTER</div>
+ </form>
+</div>
 <script>
 (()=>{
 const canvas=document.getElementById("game");
@@ -332,6 +389,14 @@ const rankNames=["BRONZE","SILVER","GOLD","PLATINUM","GRANDMASTER","LEGENDARY","
 const rankPoints=[0,100,300,600,1000,1500,2100];
 let rankProgressPoints=0;
 try{rankProgressPoints=Math.max(0,Number(localStorage.getItem("patlingRankPoints"))||0);}catch(e){}
+let guestWalletPoints=0;
+let guestWins=0;
+let guestOwnedSkins={};
+let guestActiveSkins={};
+try{guestWalletPoints=Math.max(0,Number(localStorage.getItem("patlingGuestCoins"))||0);}catch(e){}
+try{guestWins=Math.max(0,Number(localStorage.getItem("patlingGuestWins"))||0);}catch(e){}
+try{guestOwnedSkins=JSON.parse(localStorage.getItem("patlingGuestOwnedSkins")||"{}");}catch(e){guestOwnedSkins={};}
+try{guestActiveSkins=JSON.parse(localStorage.getItem("patlingGuestActiveSkins")||"{}");}catch(e){guestActiveSkins={};}
 let hugCombo=0;
 let hugAttacker=null;
 let hugTarget=null;
@@ -358,6 +423,7 @@ const roster=[
 ];
 let chosenPlayer=null;
 let chosenEnemy=1;
+let choosingSide="player";
 let gameMode="bot";
 let selectedStage=null;
 let botDifficulty="normal";
@@ -371,7 +437,12 @@ const stages=[
  {name:"Bueno Bridge",image:"assets/bueno.png"},
  {name:"Pineda Resort",image:"assets/pineda.jpg"},
  {name:"Paresan",image:"assets/paresan.jpg"},
- {name:"Municipality of Capas",image:"assets/battle-field.png"}
+ {name:"Municipality of Capas",image:"assets/battle-field.png"},
+ {name:"Cristo Rey High School",image:"assets/cristorey.jpg"},
+ {name:"Dara Eldyablo Store",image:"assets/eldya.png"},
+ {name:"Map 1",image:"",comingSoon:true},
+ {name:"Map 2",image:"",comingSoon:true},
+ {name:"Map 3",image:"",comingSoon:true}
 ];
 
 const A={
@@ -389,6 +460,82 @@ const B={
 };
 
 const $=id=>document.getElementById(id);
+let accountUser=null;
+let accountToken=localStorage.getItem("patlingAccountToken")||"";
+const skinPrices={default:0,ember:150,neon:250,champion:400};
+
+function saveGuestProgress(){
+ try{
+  localStorage.setItem("patlingRankPoints",String(rankProgressPoints));
+  localStorage.setItem("patlingGuestCoins",String(guestWalletPoints));
+  localStorage.setItem("patlingGuestWins",String(guestWins));
+  localStorage.setItem("patlingGuestOwnedSkins",JSON.stringify(guestOwnedSkins));
+  localStorage.setItem("patlingGuestActiveSkins",JSON.stringify(guestActiveSkins));
+ }catch(e){}
+}
+
+function updateGuestAccountStatus(){
+ if(accountUser||!$("accountStatus"))return;
+ $("accountStatus").innerHTML="<strong>GUEST</strong><div>"+guestWalletPoints+" COINS</div><div>LOCAL RANK</div>";
+}
+
+function ensureGuestFighterState(key){
+ if(!Array.isArray(guestOwnedSkins[key]))guestOwnedSkins[key]=["default"];
+ if(!guestOwnedSkins[key].includes("default"))guestOwnedSkins[key].unshift("default");
+ if(!guestActiveSkins[key])guestActiveSkins[key]="default";
+}
+
+async function accountApi(path,data={}){
+ let response=await fetch(path,{
+  method:"POST",
+  headers:{"Content-Type":"application/json",...(accountToken?{Authorization:"Bearer "+accountToken}:{})},
+  body:JSON.stringify(data)
+ });
+ let result=await response.json();
+ if(!response.ok)throw new Error(result.error||"Account request failed.");
+ return result;
+}
+
+function applyAccountProfile(user){
+ accountUser=user;
+ rankProgressPoints=user.rankPoints;
+ try{localStorage.setItem("patlingRankPoints",String(rankProgressPoints));}catch(e){}
+ if($("accountStatus")){
+  $("accountStatus").innerHTML="<strong>"+user.username.toUpperCase()+"</strong>"+user.walletPoints+" COINS";
+ }
+ if($("accountButton"))$("accountButton").textContent="LOGOUT";
+ if(typeof updateRankDisplay==="function")updateRankDisplay();
+ refreshRosterSelection();
+ if(typeof renderSkinPanel==="function")renderSkinPanel();
+}
+
+async function restoreAccount(){
+ if(!accountToken)return;
+ try{
+  let result=await accountApi("/api/profile");
+  applyAccountProfile(result.user);
+ }catch(error){
+  accountToken="";
+  try{localStorage.removeItem("patlingAccountToken");}catch(e){}
+ }
+}
+restoreAccount();
+updateGuestAccountStatus();
+document.querySelectorAll(".arcade-menu:not(#mainMenu)").forEach((menu,index)=>{
+ let embers=document.createElement("div");
+ embers.className="home-embers";
+ embers.setAttribute("aria-hidden","true");
+ for(let i=0;i<10;i++){
+  let ember=document.createElement("i");
+  ember.className="home-ember";
+  ember.style.setProperty("--ember-left",`${5+i*9+(index%3)*3}%`);
+  ember.style.setProperty("--ember-speed",`${6+(i%5)}s`);
+  ember.style.setProperty("--ember-delay",`${-((i*1.3+index)%9)}s`);
+  ember.style.setProperty("--ember-drift",`${(i%2?-1:1)*(12+i*2)}px`);
+  embers.appendChild(ember);
+ }
+ menu.insertBefore(embers,menu.firstChild);
+});
 const battleFieldImage=new Image();
 battleFieldImage.src="assets/battle-field.png";
 const buligSkillImage=new Image();
@@ -1130,6 +1277,9 @@ function getRankInfo(){
 function updateRankDisplay(){
  let rank=getRankInfo();
  let rankProgress=nextRankText(rank);
+ let rankLogo="assets/ranks/"+rank.name.toLowerCase()+".svg";
+ if($("menuRankLogo")) $("menuRankLogo").src=rankLogo;
+ if($("p1RankLogo")) $("p1RankLogo").src=rankLogo;
  if($("menuRank")) $("menuRank").textContent=rank.name+" RANK";
  if($("menuRankProgress")) $("menuRankProgress").textContent=rankProgress;
  if($("menuRankBar")) $("menuRankBar").style.width=rank.progress+"%";
@@ -1145,7 +1295,15 @@ function nextRankText(rank){
 function awardMatchWin(){
  let previous=getRankInfo();
  rankProgressPoints+=100;
- try{localStorage.setItem("patlingRankPoints",String(rankProgressPoints));}catch(e){}
+ if(accountToken){
+  try{localStorage.setItem("patlingRankPoints",String(rankProgressPoints));}catch(e){}
+  accountApi("/api/win",{reward:100}).then(result=>applyAccountProfile(result.user)).catch(()=>{});
+ }else{
+  guestWalletPoints+=100;
+  guestWins++;
+  saveGuestProgress();
+  updateGuestAccountStatus();
+ }
  let current=getRankInfo();
  updateRankDisplay();
  return previous.index<current.index
@@ -1617,28 +1775,148 @@ function drawCharacterPortrait(canvas,fighter,index){
  if(index===9){px(3,3,10,1,"#ff2b31");px(12,7,1,2,"#ffcf2f")}
 }
 
+function selectRosterFighter(index,card,animate=true){
+ if(choosingSide==="player")chosenPlayer=index;
+ else chosenEnemy=index;
+ if(chosenPlayer!==null&&chosenEnemy!==null&&chosenPlayer===chosenEnemy){
+  if(choosingSide==="player")chosenEnemy=(index+1)%roster.length;
+  else chosenPlayer=(index+1)%roster.length;
+ }
+ let fighter=roster[index];
+ let preview=$("fighterPreview");
+ if(preview){
+  preview.src=fighter.image||"";
+  preview.alt=fighter.name+" fighter portrait";
+  preview.classList.remove("change");
+  if(animate){
+   void preview.offsetWidth;
+   preview.classList.add("change");
+  }
+ }
+ if($("fighterPreviewName"))$("fighterPreviewName").textContent=fighter.name.toUpperCase();
+ if($("fighterPreviewSkill"))$("fighterPreviewSkill").textContent=fighter.skill.toUpperCase()+" • "+(choosingSide==="player"?"PLAYER 1":"PLAYER 2 / ENEMY");
+ if(document.querySelector(".fighter-side-label"))document.querySelector(".fighter-side-label").textContent=choosingSide==="player"?"PLAYER 1":"PLAYER 2";
+ applySelectedSkin(index);
+ if($("fighterSelectStage"))$("fighterSelectStage").style.backgroundImage="linear-gradient(rgba(5,5,15,.08),rgba(5,5,15,.08)),url('assets/battle-field.png')";
+ $("fighterSelectionMessage").textContent="";
+ $("fighterSelectionMessage").classList.remove("error");
+ if(card){
+  refreshRosterSelection();
+ }
+}
+
+function refreshRosterSelection(){
+ document.querySelectorAll("#selectGrid .select-card").forEach((card,index)=>{
+  card.classList.toggle("selected-player",index===chosenPlayer);
+  card.classList.toggle("selected-enemy",index===chosenEnemy);
+ });
+}
+
+function fighterSkinKey(index=chosenPlayer){return roster[index]?.name.toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"")||"";}
+
+function selectedSkin(index=chosenPlayer){
+ let key=fighterSkinKey(index);
+ ensureGuestFighterState(key);
+ return accountUser?.activeSkins?.[key]||guestActiveSkins[key]||"default";
+}
+
+function applySelectedSkin(index=chosenPlayer){
+ let preview=$("fighterPreview");
+ if(!preview)return;
+ ["skin-default","skin-ember","skin-neon","skin-champion"].forEach(name=>preview.classList.remove(name));
+ preview.classList.add("skin-"+selectedSkin(index));
+}
+
+function renderSkinPanel(){
+ let panel=$("skinPanel");
+ if(!panel)return;
+ let key=fighterSkinKey();
+ ensureGuestFighterState(key);
+ let owned=accountUser?.ownedSkins?.[key]||guestOwnedSkins[key]||["default"];
+ panel.innerHTML=Object.keys(skinPrices).map(skin=>{
+  let has=owned.includes(skin);
+  let label=skin.toUpperCase();
+  let cost=skinPrices[skin]?` - ${skinPrices[skin]} COINS`:"";
+  return `<button type="button" class="${has?"owned":""}" data-skin="${skin}">${label}${has?"":" BUY"+cost}</button>`;
+ }).join("");
+ panel.querySelectorAll("[data-skin]").forEach(button=>{
+  button.onclick=async ()=>{
+   let skin=button.dataset.skin;
+    if(!accountUser){
+     if(!owned.includes(skin)){
+      let cost=skinPrices[skin]||0;
+      if(guestWalletPoints<cost){
+       $("fighterSelectionMessage").textContent="Not enough coins. Win matches to earn more.";
+       $("fighterSelectionMessage").classList.add("error");
+       return;
+      }
+      guestWalletPoints-=cost;
+      guestOwnedSkins[key]=[...owned,skin];
+     }
+     guestActiveSkins[key]=skin;
+     saveGuestProgress();
+     updateGuestAccountStatus();
+     renderSkinPanel();
+     applySelectedSkin();
+     return;
+    }
+    try{
+    let result=owned.includes(skin)
+     ?await accountApi("/api/equip-skin",{fighter:key,skin})
+     :await accountApi("/api/buy-skin",{fighter:key,skin});
+    applyAccountProfile(result.user);
+   }catch(error){
+    $("fighterSelectionMessage").textContent=error.message;
+    $("fighterSelectionMessage").classList.add("error");
+   }
+  };
+ });
+ applySelectedSkin();
+}
+
+function switchSelectionSide(side){
+ choosingSide=side;
+ $("selectPlayerSide").classList.toggle("active",side==="player");
+ $("selectEnemySide").classList.toggle("active",side==="enemy");
+ let index=side==="player"?chosenPlayer:chosenEnemy;
+ let card=index===null?null:$("selectGrid").children[index];
+ if(index!==null&&card)selectRosterFighter(index,card,true);
+}
+
 function buildCharacterSelect(){
  let grid=$("selectGrid");grid.innerHTML="";
  roster.forEach((fighter,i)=>{
-  let card=document.createElement("button");card.type="button";card.className="select-card"+(i===chosenPlayer?" selected":"");
+  let card=document.createElement("button");card.type="button";card.className="select-card";
   let portrait=fighter.image?'<img src="'+fighter.image+'" alt="'+fighter.name+' portrait">':'<canvas aria-label="'+fighter.name+' pixel portrait"></canvas>';
   card.innerHTML=`<div class="select-avatar">${portrait}</div><strong>${fighter.name}</strong><small>${fighter.skill}</small>`;
   let canvas=card.querySelector("canvas");if(canvas)drawCharacterPortrait(canvas,fighter,i);
-  card.onclick=()=>{chosenPlayer=i;$("fighterSelectionMessage").textContent="";$("fighterSelectionMessage").classList.remove("error");grid.querySelectorAll(".select-card").forEach(c=>c.classList.toggle("selected",c===card));};
+  card.onclick=()=>selectRosterFighter(i,card);
   grid.appendChild(card);
  });
+ if(chosenPlayer===null && grid.firstElementChild){
+  selectRosterFighter(0,grid.firstElementChild,false);
+ }
+ chosenEnemy=chosenPlayer===1?0:1;
+ refreshRosterSelection();
  $("modeLabel").textContent=pendingMode=== "bot"?"BOT MATCH — "+botDifficulty.toUpperCase()+" — CHOOSE PLAYER":"LOCAL MULTIPLAYER — CHOOSE PLAYER 1";
  $("difficultyRow").classList.toggle("hidden",pendingMode!=="bot");
 }
-function openCharacterSelect(mode){pendingMode=mode;gameMode=mode;chosenPlayer=null;selectedStage=null;$("fighterSelectionMessage").textContent="";$("fighterSelectionMessage").classList.remove("error");showScreen("characterSelect");buildCharacterSelect();}
+function openCharacterSelect(mode){pendingMode=mode;gameMode=mode;chosenPlayer=null;chosenEnemy=1;choosingSide="player";selectedStage=null;$("fighterSelectionMessage").textContent="";$("fighterSelectionMessage").classList.remove("error");showScreen("characterSelect");buildCharacterSelect();switchSelectionSide("player");}
+
+$("selectPlayerSide").onclick=()=>switchSelectionSide("player");
+$("selectEnemySide").onclick=()=>switchSelectionSide("enemy");
+$("skinToggle").onclick=()=>{$("skinPanel").classList.toggle("hidden");renderSkinPanel();}
 
 function buildMapSelect(){
  let grid=$("mapGrid");grid.innerHTML="";
  stages.forEach((stage,index)=>{
   let card=document.createElement("button");
   card.className="map-card"+(index===selectedStage?" selected":"");
-  card.innerHTML='<div class="map-image"><img src="'+stage.image+'" alt="'+stage.name+'"></div><strong>'+stage.name+'</strong>';
-  card.querySelector("img").onerror=()=>{card.querySelector("img").src="assets/battle-field.png"};
+  card.className+=" "+(stage.comingSoon?"coming-soon":"");
+  card.disabled=!!stage.comingSoon;
+  card.innerHTML='<div class="map-image">'+(stage.comingSoon?'<div class="map-lock-icon" aria-hidden="true">LOCKED</div>':'<img src="'+stage.image+'" alt="'+stage.name+'">')+'</div><strong>'+stage.name+'</strong>'+ (stage.comingSoon?'<span class="map-coming-soon">COMING SOON</span>':"");
+  let image=card.querySelector("img");
+  if(image)image.onerror=()=>{image.src="assets/battle-field.png"};
   card.onclick=()=>{selectedStage=index;$("mapSelectionMessage").textContent="";$("mapSelectionMessage").classList.remove("error");grid.querySelectorAll(".map-card").forEach(c=>c.classList.toggle("selected",c===card));};
   grid.appendChild(card);
  });
@@ -1655,6 +1933,43 @@ $("menuNew").onclick=()=>openCharacterSelect("bot");
 $("menuMulti").onclick=()=>{showScreen("connectionMenu");$("connectionStatus").textContent="Use one device for both players, or connect Bluetooth controllers."};
 $("menuSettings").onclick=()=>showScreen("settingsMenu");
 $("menuQuit").onclick=()=>{if(confirm("Quit Patling Fighters?")){document.body.innerHTML='<div style="display:grid;place-items:center;height:100vh;background:#050612;color:#ffd329;font-family:Impact;font-size:44px;text-align:center">GAME CLOSED</div>'}};
+let authMode="login";
+function openAuth(mode="login"){
+ authMode=mode;
+ $("authOverlay").classList.remove("hidden");
+ $("authTitle").textContent=mode==="login"?"PLAYER LOGIN":"REGISTER PLAYER";
+ $("authSubmit").textContent=mode==="login"?"LOGIN":"REGISTER";
+ $("authPassword").autocomplete=mode==="login"?"current-password":"new-password";
+ $("authSwitch").textContent=mode==="login"?"No account? REGISTER":"Have an account? LOGIN";
+ $("authMessage").textContent="";
+}
+$("accountButton").onclick=()=>{
+ if(accountUser){
+  accountUser=null;accountToken="";
+  try{localStorage.removeItem("patlingAccountToken");}catch(e){}
+  $("accountStatus").innerHTML="GUEST<div>LOCAL RANK</div>";
+  updateGuestAccountStatus();
+  $("accountButton").textContent="LOGIN";
+  renderSkinPanel();
+  return;
+ }
+ openAuth();
+};
+$("authOverlay").onclick=event=>{if(event.target===event.currentTarget)event.currentTarget.classList.add("hidden");};
+$("authSwitch").onclick=()=>openAuth(authMode==="login"?"register":"login");
+$("authForm").onsubmit=async event=>{
+ event.preventDefault();
+ let username=$("authUsername").value.trim();
+ let password=$('authPassword').value;
+ $("authMessage").textContent="CONNECTING...";
+ try{
+  let result=await accountApi(authMode==="login"?"/api/login":"/api/register",{username,password});
+  accountToken=result.token;
+  try{localStorage.setItem("patlingAccountToken",accountToken);}catch(e){}
+  applyAccountProfile(result.user);
+  $("authOverlay").classList.add("hidden");
+ }catch(error){$("authMessage").textContent=error.message;}
+};
 $("selectBack").onclick=()=>gameMode=== "multiplayer"?showScreen("connectionMenu"):showScreen("mainMenu");
 $("mapBack").onclick=()=>showScreen("characterSelect");
 $("connectionBack").onclick=()=>showScreen("mainMenu");
@@ -1683,7 +1998,9 @@ $("confirmCharacter").onclick=()=>{
   $("fighterSelectionMessage").classList.add("error");
   return;
  }
- chosenEnemy=gameMode=== "bot"?(chosenPlayer+1)%roster.length: (chosenPlayer===1?0:1);
+ if(chosenEnemy===null||chosenEnemy===chosenPlayer){
+  chosenEnemy=(chosenPlayer+1)%roster.length;
+ }
  if(gameMode.includes("lan-"))sendLanMessage({fighter:{player:chosenPlayer,enemy:chosenEnemy}});
  applyRosterCharacter();
  selectedStage=null;
